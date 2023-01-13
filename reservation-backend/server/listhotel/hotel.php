@@ -24,15 +24,16 @@ $price = $_GET['price'];
         $path = explode('/', $_SERVER['REQUEST_URI']);
             if(isset($price) && isset($cheapestPrice)){
                 // grouping them by there price range and ordering by there rating
-                $sql .= "OR cheapestPrice='".$cheapestPrice."' AND price='".$price."'
-                order by rating DESC, distance ASC  ";
+                $sql .= "order by cheapestPrice='".$cheapestPrice."' ASC,
+                price='".$price."' DESC,
+                rating DESC, distance ASC  ";
                 $stmt = $conn->prepare($sql);
                 $stmt->execute();
                 $hotels = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             }else{
                
-                $hotels = "sorry Hotel not found";
+                $hotels = "Sorry Hotel not found";
 
             }
 

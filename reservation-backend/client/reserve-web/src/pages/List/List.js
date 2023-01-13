@@ -13,19 +13,21 @@ import SearchItem from "../../components/searchItem/SearchItem";
 
 const List = () => {
   const location = useLocation();
-  const [destination] = useState(location.state.destination); //, setDestination
+  const [destination,setDestination] = useState(location.state.destination); //, setDestination
   const [dates, setDates] = useState(location.state.dates);
   const [openDate, setOpenDate] = useState(false);
-  const [options] = useState(location.state.options); //, setOptions
+  const [options,setOptions] = useState(location.state.options); //, setOptions
   const [min, setMin] = useState('');
   const [max, setMax] = useState('');
   const [data, setdata] = useState([]);
+  const [loading, setLoading] = useState(false);
     const params = {
       city:destination,
       cheapestPrice:min,
       price:max}
       useEffect(() => {
         Searchhotel()
+        setLoading(false);
       },[])
 
 function Searchhotel ()  {
@@ -37,10 +39,10 @@ function Searchhotel ()  {
       setdata(res.data);
    })
   }
-  const handleClick = () => {
-    Searchhotel ()
-    console.log(data);
-  }
+  // const handleClick = () => {
+  
+    
+  // }
 
   return (
     <div>
@@ -51,7 +53,7 @@ function Searchhotel ()  {
             <h1 className="lsTitle">Search</h1>
             <div className="lsItem">
               <label>Destination</label>
-              <input placeholder={destination} type="text" />
+              <input placeholder={destination} type="text" onChange={(e) => setDestination(e.target.value)} />
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
@@ -92,6 +94,7 @@ function Searchhotel ()  {
                     min={1}
                     className="lsOptionInput"
                     placeholder={options.adult}
+                    onChange={(e)=> setOptions(e.target.value)}
                   />
                 </div>
                 <div className="lsOptionItem">
@@ -101,6 +104,7 @@ function Searchhotel ()  {
                     min={0}
                     className="lsOptionInput"
                     placeholder={options.children}
+                    onChange={(e)=> setOptions(e.target.value)}
                   />
                 </div>
                 <div className="lsOptionItem">
@@ -110,18 +114,25 @@ function Searchhotel ()  {
                     min={1}
                     className="lsOptionInput"
                     placeholder={options.room}
+                    onChange={(e)=> setOptions(e.target.value)}
                   />
                 </div>
               </div>
             </div>
-            <button onClick={handleClick()}>Search</button>
+            <button onClick={Searchhotel()}>Search</button>
           </div>
           <div className="listResult">
+            {loading ? (
+              "loading, Please wait"
+            ):(
+              <>
             {data.map((hotel) => (
             
              <SearchItem hotel={hotel} key={hotel.HotelCode}  />
              
             ))}
+            </>
+            )}
           </div>
         </div>
       </div>
