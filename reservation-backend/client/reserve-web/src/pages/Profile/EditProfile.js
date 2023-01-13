@@ -20,6 +20,7 @@ export default function EditProfile(){
       console.log($response.data);
       console.log(UserID);
       setInputs($response.data);  
+      console.log(Inputs);
     });
 }
 

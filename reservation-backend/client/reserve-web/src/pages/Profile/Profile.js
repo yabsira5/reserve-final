@@ -29,7 +29,7 @@ export default function Profile(){
     .then(function ($response){
       console.log($response.data);
       setProfile($response.data);
-      console.log(user)
+      console.log(profiles)
     })
     .catch(err=>console.log(err))
      
@@ -51,7 +51,7 @@ export default function Profile(){
                       <p>Country:{profile.Country}</p>
                       <p>City:{profile.City}</p>
                       <p>Phone:{profile.Phone}</p>
-                      <Link to={`user/${profile.UserID}/edit`} style={{marginRight: "10px"}}>Edit Info</Link>
+                      <Link to={`profile/${profile.UserID}/edit`} style={{marginRight: "10px"}}>Edit Info</Link>
                     </div>
                   ))}</div>
             </div>
