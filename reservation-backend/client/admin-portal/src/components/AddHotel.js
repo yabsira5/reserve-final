@@ -111,7 +111,7 @@ const NewHotel = () => {
           <input className="managerinput" value={Inputs.distance || ""} type="text" name="distance" onChange={handleChange}/>
         </label>
         <label className="managerlabel">
-          <div>Select a Photo of the Hotel</div>
+          <h4>Select a Photo of the Hotel</h4>
           <input className="managerinput" type='file' onChange={handleChangefile} name='photo'multiple/>
           {/* <div><button>Upload Image</button></div> */}
         </label>

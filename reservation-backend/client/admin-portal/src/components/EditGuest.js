@@ -55,7 +55,7 @@ export default function EditGuest(){
           <input className="managerinput" value={Inputs.Email} type="text" name="Email" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="managerlabel">Counrtry:
+        <label className="managerlabel">Country:
           <input className="managerinput" value={Inputs.Country} type="text" name="Country" onChange={handleChange}/>
         </label>
         <br/>
