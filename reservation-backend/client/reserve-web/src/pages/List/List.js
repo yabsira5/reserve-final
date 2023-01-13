@@ -137,10 +137,8 @@ function Searchhotel ()  {
               </>
               
             )} */}
-            {data.map((hotel) =>
-             <SearchItem hotel={hotel} key={hotel.HotelCode}  />
-            )}
-
+            
+ <SearchItem data={data}  />
                 
             {/* <SearchItem />
             <SearchItem />
