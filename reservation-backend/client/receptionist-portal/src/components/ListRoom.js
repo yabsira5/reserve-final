@@ -83,7 +83,7 @@ const deleteRoom = (RoomNo) => {
                  <Link to={`room/${room.RoomNo}/edit`} style={{marginRight: "10px"}}>Edit</Link>
                  </td>
                  <td>
-                <button className="btn btn-denger" onClick={() => deleteRoom(room.RoomNo)}>Delete</button>
+                <button className="roombutton" onClick={() => deleteRoom(room.RoomNo)}>Delete</button>
                </td>
                        
            </tr>

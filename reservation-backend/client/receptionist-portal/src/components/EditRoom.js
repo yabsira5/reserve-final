@@ -42,40 +42,41 @@ export default function EditRoom(){
   }
   return(
       <div className="roomBody">
+        <div className="roomForm">
         <form onSubmit={handelSubmit}>
 
         <h1>Edit Room</h1>
       
+        <label className="roomlabel">RoomNo:
+          <input className="roominput" value={Inputs.RoomNo} type="number" name="RoomNo" onChange={handleChange}/>
+        </label>
+        <br/>
+        <label className="roomlabel">title:
+          <input className="roominput" value={Inputs.title} type="text" name="title" onChange={handleChange}/>
+        </label>
+        <br/>
+        <label className="roomlabel">price:
+          <input className="roominput" value={Inputs.price} type="text" name="price" onChange={handleChange}/>
+        </label>
+        <br/>
+        <label className="roomlabel">maxpeople:
+          <input  className="roominput" value={Inputs.maxpeople} type="number" name="maxpeople" onChange={handleChange}/>
+        </label>
+        <br/>
+        <label className="roomlabel">discription:
+          <input className="roominput" value={Inputs.disc} type="text" name="disc" onChange={handleChange}/>
+        </label>
+        <br/>
+        <label className="roomlabel">roomNumber:
+          <input className="roominput" value={Inputs.roomNumbers} type="number" name="roomNumbers" onChange={handleChange}/>
+        </label>
+        <br/>
       
-        <label>RoomNo:
-          <input value={Inputs.RoomNo} type="number" name="RoomNo" onChange={handleChange}/>
-        </label>
-        <br/>
-        <label>title:
-          <input value={Inputs.title} type="text" name="title" onChange={handleChange}/>
-        </label>
-        <br/>
-        <label>price:
-          <input value={Inputs.price} type="text" name="price" onChange={handleChange}/>
-        </label>
-        <br/>
-        <label>maxpeople:
-          <input value={Inputs.maxpeople} type="number" name="maxpeople" onChange={handleChange}/>
-        </label>
-        <br/>
-        <label>discription:
-          <input value={Inputs.disc} type="text" name="disc" onChange={handleChange}/>
-        </label>
-        <br/>
-        <label>roomNumber:
-          <input value={Inputs.roomNumbers} type="number" name="roomNumbers" onChange={handleChange}/>
-        </label>
-        <br/>
-      
-        <button>Update</button>
+        <button className="roombutton">Update</button>
 
       </form>
     
+    </div>
       </div>
      )
   }

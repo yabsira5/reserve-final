@@ -42,35 +42,36 @@ export default function EditManager(){
    
   }
   return(
-      <div className="roomBody">
+      <div className="editBody">
+        <div className="roomForm">
         <form onSubmit={handelSubmit}>
-      <h1>Edit Employee</h1>
+      <h1>Edit Manager</h1>
       
-        <label>HotelCode:
-          <input value={Inputs.HotelCode} type="number" name="HotelCode" onChange={handleChange}/>
+        <label className="managerlabel">HotelCode:
+          <input className="managerinput" value={Inputs.HotelCode} type="number" name="HotelCode" onChange={handleChange}/>
         </label>
         <br/>
-        <label>FirstName:
-          <input value={Inputs.FirstName} type="text" name="FirstName" onChange={handleChange}/>
+        <label className="managerLabel">FirstName:
+          <input className="managerinput" value={Inputs.FirstName} type="text" name="FirstName" onChange={handleChange}/>
         </label>
         <br/>
-        <label>LastName:
-          <input value={Inputs.LastName} type="text" name="LastName" onChange={handleChange}/>
+        <label className="managerLabel">LastName:
+          <input className="managerinput" value={Inputs.LastName} type="text" name="LastName" onChange={handleChange}/>
         </label>
         <br/>
-        <label>Email:
-          <input value={Inputs.Email} type="text" name="Email" onChange={handleChange}/>
+        <label className="managerlabel">Email:
+          <input className="managerinput" value={Inputs.Email} type="text" name="Email" onChange={handleChange}/>
         </label>
         <br/>
-        <label>Password:
-          <input value={Inputs.Password} type="text" name="Password" onChange={handleChange}/>
+        <label className="managerlabel">Password:
+          <input className="managerinput" value={Inputs.Password} type="text" name="Password" onChange={handleChange}/>
         </label>
         <br/>
       
-        <button>Update</button>
+        <button className="managerbutton">Update</button>
 
       </form>
-    
+      </div>
       </div>
      )
   }

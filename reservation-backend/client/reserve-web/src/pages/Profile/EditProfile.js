@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import './tableDesign.css'
 
-export default function EditGuest(){
+export default function EditProfile(){
   
   const navigate = useNavigate();
   
@@ -36,46 +36,45 @@ export default function EditGuest(){
     
    axios.put(`http://localhost/User/user/${UserID}/edit`,Inputs).then(function ($response){
     console.log($response.data);
-    navigate("/users");
+    navigate("/Profile");
    
    });
    
   }
   return(
-      <div className="editBody">
-        <div className="roomForm">
+      <div className="roomBody">
         <form onSubmit={handelSubmit}>
-      <h1>Edit Guest</h1>
+      <h1>Edit Profile</h1>
       
-        <label className="managerlabel">UserName:
-          <input className="managerinput" value={Inputs.Username} type="text" name="Username" onChange={handleChange}/>
+        <label>UserName:
+          <input value={Inputs.Username} type="text" name="Username" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="managerlabel">Email:
-          <input className="managerinput" value={Inputs.Email} type="text" name="Email" onChange={handleChange}/>
+        <label>Email:
+          <input value={Inputs.Email} type="text" name="Email" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="managerlabel">Counrtry:
-          <input className="managerinput" value={Inputs.Country} type="text" name="Country" onChange={handleChange}/>
+        <label>Counrtry:
+          <input value={Inputs.Country} type="text" name="Country" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="managerlabel">City:
-          <input className="managerinput" value={Inputs.City} type="text" name="City" onChange={handleChange}/>
+        <label>City:
+          <input value={Inputs.City} type="text" name="City" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="managerlabel">Phone:
-          <input className="managerinput" value={Inputs.Phone} type="text" name="Phone" onChange={handleChange}/>
+        <label>Phone:
+          <input value={Inputs.Phone} type="text" name="Phone" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="managerlabel">Password:
-          <input className="managerinput" value={Inputs.Password} type="text" name="Password" onChange={handleChange}/>
+        <label>Password:
+          <input value={Inputs.Password} type="text" name="Password" onChange={handleChange}/>
         </label>
         <br/>
       
-        <button className="managerbutton">Update</button>
+        <button>Update</button>
 
       </form>
-      </div>
+    
       </div>
      )
   }

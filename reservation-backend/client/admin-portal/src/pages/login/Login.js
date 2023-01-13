@@ -38,9 +38,8 @@ const Login = () => {
     axios.post('http://localhost/api2/login_clinet.php',sendData)
     
     .then((result)=>{
-      if(result.data.Status === '200'){
-        window.localStorage.setItem('Email', result.data.Email);
-        window.localStorage.setItem('Username', result.data.Username);
+      if(result.status === 200){
+        window.localStorage.setItem('auth', result.data);
       navigate('/');}
       else{
         alert('Invalid User');

@@ -65,7 +65,6 @@ const handleCloseUserMenu = () => {
       <div className="navContainer">
         <span className="logo">Hotel booking</span>
         <div className="navItems">
-
             <IconButton
                 className="actions__btn actions__btn--home"
                 onClick={handleHome}

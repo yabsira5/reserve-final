@@ -30,41 +30,42 @@ export default function AddRoom(){
   }
   return(
       <div className="roomBody">
+        <div className="roomForm">
         <form onSubmit={handelSubmit}>
       <h1>Add Room</h1>
       
-        <label>RoomNo:
-          <input value={Inputs.RoomNo} type="number" name="RoomNo" onChange={handleChange}/>
+        <label className="roomlabel">RoomNo:
+          <input className="roominput" value={Inputs.RoomNo} type="number" name="RoomNo" onChange={handleChange}/>
         </label>
         <br/>
-        <label>HotelCode:
-          <input value={Inputs.HoteCode} type="number" name="HotelCode" onChange={handleChange}/>
+        <label className="roomlabel">HotelCode:
+          <input className="roominput" value={Inputs.HoteCode} type="number" name="HotelCode" onChange={handleChange}/>
         </label>
-        <label>title:
-          <input value={Inputs.title} type="text" name="title" onChange={handleChange}/>
-        </label>
-        <br/>
-        <label>price:
-          <input value={Inputs.price} type="text" name="price" onChange={handleChange}/>
+        <label className="roomlabel">title:
+          <input className="roominput" value={Inputs.title} type="text" name="title" onChange={handleChange}/>
         </label>
         <br/>
-        <label>maxpeople:
-          <input value={Inputs.maxpeople} type="number" name="maxpeople" onChange={handleChange}/>
+        <label className="roomlabel">price:
+          <input className="roominput" value={Inputs.price} type="text" name="price" onChange={handleChange}/>
         </label>
         <br/>
-        <label>discription:
-          <input value={Inputs.disc} type="text" name="disc" onChange={handleChange}/>
+        <label className="roomlabel">maxpeople:
+          <input className="roominput" value={Inputs.maxpeople} type="number" name="maxpeople" onChange={handleChange}/>
         </label>
         <br/>
-        <label>roomNumber:
-          <input value={Inputs.roomNumbers} type="number" name="roomNumbers" onChange={handleChange}/>
+        <label className="roomlabel">discription:
+          <input className="roominput" value={Inputs.disc} type="text" name="disc" onChange={handleChange}/>
+        </label>
+        <br/>
+        <label className="roomlabel">roomNumber:
+          <input className="roominput" value={Inputs.roomNumbers} type="number" name="roomNumbers" onChange={handleChange}/>
         </label>
         <br/>
       
-        <button>Submit</button>
+        <button className="roombutton">Submit</button>
 
       </form>
-    
+      </div>
       </div>
      )
   }

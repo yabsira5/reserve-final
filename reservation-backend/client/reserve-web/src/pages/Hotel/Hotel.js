@@ -1,5 +1,7 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useContext,useState } from "react";
+import { useLocation,useNavigate } from "react-router-dom";
+import useFetch from "../../hooks/UseFetch";
+import { SearchContext } from "../../context/SearchContext";
 
 import Navbar from "../../components/navbar/Navbar";
 
@@ -11,10 +13,33 @@ import PlaceIcon from "@mui/icons-material/Place";
 import "./Hotel.css";
 
 const Hotel = () => {
+  //All States
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
 
+   // Use Location for get The Hotel ID
+   const location = useLocation();
+   const HotelCode = location.pathname.split("/")[2];
+
+   // Use Fetch Function
+  const { data, loading } = useFetch(`/Hotel/hotel/${HotelCode}`);
+
+  // Context (Use Context)
+  const { dates, options } = useContext(SearchContext);
+
   const navigate = useNavigate();
+
+   // get actual date function
+   const MILISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
+   function dayDifference(date1, date2) {
+     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+     const diffDays = Math.ceil(timeDiff / MILISECONDS_PER_DAY);
+     return diffDays;
+   }
+ 
+   // get days using actual date define function
+   const days = dayDifference(dates[0].endDate, dates[0].startDate);
+
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -124,13 +149,14 @@ const Hotel = () => {
               </p>
             </div>
             <div className="hotelDetailsPrice">
-              <h1>Perfect for a 9-night stay!</h1>
+              <h1>Perfect for a {days}-night stay!</h1>
               <span>
                 Located in the real heart of Krakow, this property has an
                 excellent location score of 9.8!
               </span>
               <h2>
-                <b>$945</b> (9 nights)
+                <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
+                nights)
               </h2>
             </div>
           </div>

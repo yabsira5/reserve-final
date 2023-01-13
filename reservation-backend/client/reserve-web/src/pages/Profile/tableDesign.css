@@ -4,7 +4,7 @@
   
   .roomBody {
     font-family: Lato;
-    height: 127vh;
+    height: 97vh;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -13,28 +13,6 @@
     background-color: #050d4e;
   }
   
-  .editBody {
-    font-family: Lato;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #050d4e;
-  }
-
-  .addBody {
-    font-family: Lato;
-    height: 150vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #050d4e;
-  }
-
   form {
     display: flex;
     flex-direction: column;
@@ -64,19 +42,19 @@
     padding-right: 0.5em;
   }
   
-  .managerlabel {
+  label {
     margin-bottom: 0.5em;
     color: #444;
     font-weight: lighter;
   }
   
-  .managerinput {
+  input {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
     width: 100%;
   }
-  .managerinput, select {
+  input, select {
     padding: 10px 10px;
     border-radius: 5px;
     border: 1px solid #d6d1d5;
@@ -87,14 +65,14 @@
     width: 100%;
     height: 35px;
   }
-  .managerinput[type="checkbox"] {
+  input[type="checkbox"] {
     display: inline-block;
     width: auto;
     margin-top: 2em;
     margin-right: 10px;
   }
   
-  .managerbutton {
+  button {
     min-width: 100%;
     cursor: pointer;
     margin-right: 0.25em;
@@ -105,7 +83,7 @@
     background-color: #22223B;
     color: #fefefe;
   }
-  .managerbutton:hover {
+  button:hover {
     background-color: #4A4E69;
     color: #fefefe;
   }

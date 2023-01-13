@@ -13,10 +13,11 @@ import NewManager from "./pages/managerlist/NewManager";
 import ListGuest from "./components/ListGuest";
 import EditGuest from "./components/EditGuest";
 import ListHotel from "./components/ListHotel";
-import AddHotel from "./components/AddHotel";
+// import AddHotel from "./components/AddHotel";
 import ListEmp from "./pages/managerlist/ManagerList";
 import EditManager from "./components/EditManager";
-
+import EditHotel from "./components/EditHotel"
+import NewHotel from "./components/AddHotel"
 function App() {
   return (
     <BrowserRouter>
@@ -49,10 +50,11 @@ function App() {
 
             <Route path="hotels">
               <Route index element={<ListHotel />} />
+              <Route path="hotel/:HotelCode/edit" element={<EditHotel />}/>
               <Route path=":hotelId" element={<Single />} />
               <Route
                 path="newHotel"
-                element={<AddHotel title="Add New Hotel" />}
+                element={<NewHotel title="Add New Hotel" />}
               />
             </Route>
 
