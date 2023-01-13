@@ -8,14 +8,14 @@ export default function Profile(){
 
   let {UserID} = useParams();
 
-  const [user,setUsers] = useState([]);
+  // const [user,setUsers] = useState([]);
   const [profiles, setProfile] = useState([]);
 
   useEffect (() => {
     
     UserID = JSON.parse(localStorage.getItem('auth'));
     if(UserID){
-        setUsers(UserID);
+        // setUsers(UserID);
         
         console.log(UserID)
         getUser()

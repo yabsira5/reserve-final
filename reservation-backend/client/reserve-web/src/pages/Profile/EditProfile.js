@@ -7,7 +7,7 @@ export default function EditProfile(){
   
   const navigate = useNavigate();
   
-  const [Inputs, setInputs] = useState({});
+  const [Inputs, setInputs] = useState([]);
   
   const {UserID} = useParams();
 
@@ -16,10 +16,10 @@ export default function EditProfile(){
   },[]);
   
   function getUser(){
-    axios.get(`http://localhost/User/user/${UserID}`).then(function ($response){
-      console.log($response.data);
+    axios.get(`http://localhost/User/Edit/${UserID}`).then((response)=>{
+      console.log(response.data);
       console.log(UserID);
-      setInputs($response.data);  
+      setInputs(response.data);  
       console.log(Inputs);
     });
 }
