@@ -1,40 +1,12 @@
-import React,{useEffect} from "react";
+import React from "react";
 import "./searchItem.css";
-import { Link,useParams } from "react-router-dom";
-import useFetch from "../../hooks/UseFetch";
+import { Link}from "react-router-dom";
 import Hotel from "../../pages/Hotel/Hotel";
 
 // import Hotel from "../../pages/Hotel/Hotel";
 
 const SearchItem = ({hotel}) => {
-
-  // const result = Object.values(data);
   console.log(hotel)
-
-  // let datas =[];
-  // if (data){
-  //   datas = result.data || [];
-  // }
-  // console.log(datas);
-  
-  // const {HotelCode} = useParams();
-  // const [item, setItems] = useState([]);
-//   useEffect (() => { 
-  
-//     getHotels();
-// }, 
-// []);
-  
-  // function getHotels(){
-    // axios.get(`http://localhost/hotel/hotel/`).then(function ($response){
-    //   console.log($response.data);
-    //   setItems($response.data);  
-    // });
-    // const { data, loading, reFetch } = useFetch(
-    //   `/hotel/hotel/${HotelCode}`
-    // );
-// }
-
 
   return (
     <div className="searchItem">
@@ -64,7 +36,7 @@ const SearchItem = ({hotel}) => {
           <span className="siPrice">ETB {hotel.price}</span>
           <span className="siTaxOp">ETB {hotel.cheapestPrice}</span>
 
-          <Link to= {`hotels`}>                
+          <Link to= {`/hotels/${hotel.HotelCode}`}>                
             <button className="siCheckButton">See availability</button>
           </Link>
           {/* to={`hotels/${item.HotelCode}/list`} */}

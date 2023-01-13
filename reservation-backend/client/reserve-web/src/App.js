@@ -23,7 +23,7 @@ function App() {
           <Route path="/" element={<Home/>}/>
           <Route path="/hotels" index element={<List />}/>
             <Route path="/Srchotel" element={<SearchItem/>}/>
-            <Route path="/hotels:HotelCode" element={<Hotel/>}/>
+            <Route path="/hotels/:HotelCode" element={<Hotel/>}/>
           {/* /:HotelCode/list */}
           <Route path="/checkout" element={<OrderSummary/>}/>
           <Route path="/login" element={<Login/>}/>

@@ -8,9 +8,7 @@ import axios from "axios";
 
 import "./List.css";
 import Navbar from "../../components/navbar/Navbar";
-import {  useParams } from "react-router-dom";
 import SearchItem from "../../components/searchItem/SearchItem";
-import useFetch from "../../hooks/UseFetch";
 
 
 const List = () => {
@@ -31,23 +29,15 @@ const List = () => {
       },[])
 
 function Searchhotel ()  {
-//   console.log(city);
-  
- console.log(destination);
 
-
-  axios.get(`http://localhost/listhotel/hotel.php?city=${destination}&cheapestPrice=${min}&price=${max}`).then((res)=>{
+   console.log(destination);
+   axios.get(`http://localhost/listhotel/hotel.php?city=${destination}&cheapestPrice=${min}&price=${max}`).then((res)=>{
       console.log(res.data)
       console.log({params})
-      console.log(Object.values(res.data))
       setdata(res.data);
    })
-  // const { data, loading, reFetch } = useFetch(
-  //  `/hotel/hotel/`
-  // );
   }
   const handleClick = () => {
-    // reFetch();
     Searchhotel ()
     console.log(data);
   }
@@ -127,30 +117,11 @@ function Searchhotel ()  {
             <button onClick={handleClick()}>Search</button>
           </div>
           <div className="listResult">
-          {/* {loading ? (
-              "loading, Please Wait"
-            ) : (
-              <>
-                {data.map((item) => (
-                  <SearchItem item={item} key={item._HotelCode} />
-                ))}
-              </>
-              
-            )} */}
             {data.map((hotel) => (
             
              <SearchItem hotel={hotel} key={hotel.HotelCode}  />
-            ))}
              
-                
-            {/* <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem /> */}
+            ))}
           </div>
         </div>
       </div>
