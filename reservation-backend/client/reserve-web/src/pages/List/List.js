@@ -40,7 +40,7 @@ function Searchhotel ()  {
       console.log(res.data)
       console.log({params})
       console.log(Object.values(res.data))
-      setdata(Object.values(res.data));
+      setdata(res.data);
    })
   // const { data, loading, reFetch } = useFetch(
   //  `/hotel/hotel/`
@@ -137,8 +137,11 @@ function Searchhotel ()  {
               </>
               
             )} */}
+            {data.map((hotel) => (
             
- <SearchItem data={data}  />
+             <SearchItem hotel={hotel} key={hotel.HotelCode}  />
+            ))}
+             
                 
             {/* <SearchItem />
             <SearchItem />

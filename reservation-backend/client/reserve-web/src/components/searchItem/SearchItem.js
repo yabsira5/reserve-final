@@ -6,10 +6,10 @@ import Hotel from "../../pages/Hotel/Hotel";
 
 // import Hotel from "../../pages/Hotel/Hotel";
 
-const SearchItem = ({data}) => {
+const SearchItem = ({hotel}) => {
 
   // const result = Object.values(data);
-  console.log(data)
+  console.log(hotel)
 
   // let datas =[];
   // if (data){
@@ -37,8 +37,6 @@ const SearchItem = ({data}) => {
 
 
   return (
-    <div> {data.map((hotel,key) =>
-      <div key={key}>
     <div className="searchItem">
      
       <img
@@ -48,9 +46,9 @@ const SearchItem = ({data}) => {
       />
       
       <div className="siDesc">
-        <h1 className="siTitle" >{hotel}</h1> 
+        <h1 className="siTitle" >{hotel.name}</h1> 
         <span className="siDistance">{hotel.distance}</span>
-        <span className="siTaxiOp">{hotel.address}</span>
+        <span className="siTaxiOp">{hotel.city}</span>
         <span className="siSubtitle">
         {hotel.title}
         </span>
@@ -64,7 +62,7 @@ const SearchItem = ({data}) => {
         </div>
         <div className="siDetailTexts">
           <span className="siPrice">ETB {hotel.price}</span>
-          <span className="siTaxOp">{hotel.cheapestPrice}</span>
+          <span className="siTaxOp">ETB {hotel.cheapestPrice}</span>
 
           <Link to= {`hotels`}>                
             <button className="siCheckButton">See availability</button>
@@ -73,10 +71,7 @@ const SearchItem = ({data}) => {
         </div>
       </div>
       </div>
-      </div>
-      )}
-    
-    </div>
+      
   );
 };
 
