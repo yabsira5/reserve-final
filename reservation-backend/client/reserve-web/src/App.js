@@ -29,8 +29,10 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/signUp" element={<SignUp/>}/>
           <Route path="/reserve" element={<Reserve/>}/>
-          <Route path="/profile" element={<Profile/>}/>
-          <Route path="user/:UserID/edit" element={<EditProfile />} />
+          <Route path="/profile">
+            <Route index element={<Profile/>}/>
+          <Route path="profile/:UserID/edit" element={<EditProfile />} />
+          </Route>
         </Routes>
       </BrowserRouter> 
     );
