@@ -51,23 +51,23 @@ export default function EditRoom(){
           <input className="roominput" value={Inputs.RoomNo} type="number" name="RoomNo" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="roomlabel">title:
+        <label className="roomlabel">Title:
           <input className="roominput" value={Inputs.title} type="text" name="title" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="roomlabel">price:
+        <label className="roomlabel">Price:
           <input className="roominput" value={Inputs.price} type="text" name="price" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="roomlabel">maxpeople:
+        <label className="roomlabel">Maxpeople:
           <input  className="roominput" value={Inputs.maxpeople} type="number" name="maxpeople" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="roomlabel">discription:
+        <label className="roomlabel">Description:
           <input className="roominput" value={Inputs.disc} type="text" name="disc" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="roomlabel">roomNumber:
+        <label className="roomlabel">Room Number:
           <input className="roominput" value={Inputs.roomNumbers} type="number" name="roomNumbers" onChange={handleChange}/>
         </label>
         <br/>

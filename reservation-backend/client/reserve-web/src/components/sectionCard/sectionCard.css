@@ -1,0 +1,105 @@
+.Cities {
+    margin-bottom: 3.5em;
+    /* margin-left: 8vw; */
+    display: grid;
+    grid-template-columns: 38vw 38vw;
+    grid-auto-rows: 18vw;
+    grid-gap: 1vw;
+    cursor: pointer;
+    border: 1px solid #fafcff;
+}
+
+.Cities img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.cityBox {
+    position: relative;
+    color: #fff !important;
+}
+
+.cityName {
+    top: 2vw;
+    left: 2.5vw;
+    position: absolute;
+
+    font-weight: bold;
+    font-size: 1.78em;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+
+}
+
+.cityHotels {
+    top: 4em;
+    left: 2.5vw;
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    line-height: 1;
+}
+
+.citythree {
+    margin-top: 3.5em;
+    /* margin-left: 8vw; */
+    display: grid;
+    grid-template-columns: 25vw 25vw 25vw;
+    grid-auto-rows: 12vw;
+    grid-gap: 1vw;
+    /* height: 270px; */
+    margin-bottom: 20px;
+}
+
+.citythree img {
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.FourthSection-div {
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 5em;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between
+}
+
+.FourthSection{
+    width: 80%;
+    margin:auto;
+    padding-top: 20px;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+.sectionIcon{
+    color: #003580;
+}
+.FourthSection h5{
+    padding: 0;
+    margin: 0;
+    font-size:20px;
+}
+.FourthSection h5+div{
+  font-size:14px;
+  /* font-weight: lighter; */
+}
+.FourthSection >.outerFlex{
+    display: flex;
+    justify-content:space-between;
+
+}
+.FourthSection >.outerFlex>div{
+    margin: 0.7%;
+}
+.FourthSection >.outerFlex>.innerFlex{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+.FourthSection >.outerFlex>.innerFlex>div{
+    margin: 1.5%;
+}
