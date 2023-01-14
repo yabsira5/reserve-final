@@ -12,7 +12,7 @@ $conn = $objDb->connect();
 $method = $_SERVER['REQUEST_METHOD'];
 switch($method) {
     case "GET":
-        $sql = "SELECT booking.BookingID,user.Username,user.Email,user.Phone,room.roomNumbers,booking.BookingDate,booking.CheckIn,booking.CheckOut,booking.NumAdults,booking.NumChildren FROM booking
+        $sql = "SELECT booking.BookingID,user.Username,user.Email,user.Phone,room.RoomNo,room.Booked_Status,room.roomNumbers,booking.BookingDate,booking.CheckIn,booking.CheckOut,booking.NumAdults,booking.NumChildren FROM booking
         inner join room on booking.RoomNo=room.RoomNo
         inner join user on booking.UserID=user.UserID";
         $path = explode('/', $_SERVER['REQUEST_URI']);

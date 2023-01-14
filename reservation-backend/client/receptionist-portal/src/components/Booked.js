@@ -30,6 +30,13 @@ export default function ListBooked(){
     });
 }
 
+function deleteBooked(BookingID){
+  
+  axios.get(`http://localhost/Booking/booking/${BookingID}`).then(function ($response){
+    console.log($response.data);
+    getBooked();  
+  });
+}
     
 
 
@@ -49,7 +56,8 @@ export default function ListBooked(){
         <table>
             <thead>
             <tr>
-              <th>BookingID</th>
+              <th>Booking ID</th>
+              <th>Room ID</th>
               <th>Username</th>
               <th>Email</th>
               <th>Phone</th>
@@ -59,6 +67,8 @@ export default function ListBooked(){
               <th>CheckOut</th>
               <th>NumAdults</th>
               <th>NumChildern</th>
+              <th>Is it still Booked </th>
+              <th>Cancel</th>
             </tr>
            </thead>
 
@@ -66,6 +76,7 @@ export default function ListBooked(){
         {item.map((room, key) =>
            <tr key={key}>
                <td>{room.BookingID}</td>
+               <td>{room.RoomNo}</td>
                <td>{room.Username}</td>
                <td>{room.Email}</td>
                <td>{room.Phone}</td>
@@ -75,6 +86,10 @@ export default function ListBooked(){
                <td>{room.CheckOut}</td>
                <td>{room.NumAdults}</td>
                <td>{room.NumChildren}</td>
+               <td>{room.Booked_Status}</td>
+               <td>
+                <button className="roombutton" onClick={() => deleteBooked(room.BookingID)}>Cancel</button>
+               </td>
                
                        
            </tr>

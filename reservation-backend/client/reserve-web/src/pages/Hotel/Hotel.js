@@ -19,6 +19,7 @@ const Hotel = () => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
   const [type, setType] = useState([]);
+  const [check, setCheck] = useState('');
 
 
    // Use Location for get The Hotel ID
@@ -27,13 +28,25 @@ const Hotel = () => {
    console.log(HotelCode);
 
    useEffect(() =>{
+
+    //gets Hotel Details
     axios.get(`http://localhost/Hotel/hotel/${HotelCode}`).then(function($response){
       setData($response.data)
     })
 
+    //get RoomID to check avalibilty
+    axios.get(`http://localhost/check/booking/${HotelCode}`).then((response)=>{
+      setCheck(response.data);
+      console.log(response.data);
+      console.log(check)
+  });
+    
+    //gets Room Details
     axios.get(`http://localhost/Roomtype/room/${HotelCode}`).then(function($response){
       setType($response.data)
     })
+
+   
 
    },[])
 
@@ -170,7 +183,10 @@ const Hotel = () => {
 
         <h2>Room Types</h2> 
             <div className="roomTypes">
+             
               {type.map((room)=>(
+                //  (() =>{
+                //   if(check.RoomNo != room.RoomNo) {
             <div className="projcard-container" key={room.title}>
               <div className="projcard projcard-blue">
                 <div className="projcard-innerbox">
@@ -189,7 +205,11 @@ const Hotel = () => {
                 </div>
               </div>
             </div>
+            //   }
+            // })
+
               ))}
+          
          </div>   
         </div>
 

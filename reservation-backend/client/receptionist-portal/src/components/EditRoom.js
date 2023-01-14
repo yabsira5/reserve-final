@@ -71,6 +71,10 @@ export default function EditRoom(){
           <input className="roominput" value={Inputs.roomNumbers} type="number" name="roomNumbers" onChange={handleChange}/>
         </label>
         <br/>
+        <label className="roomlabel">Booked Status:
+          <input className="roominput" value={Inputs.Booked_Status} type="number" name="Booked_Status" onChange={handleChange}/>
+        </label>
+        <br/>
       
         <button className="roombutton">Update</button>
 

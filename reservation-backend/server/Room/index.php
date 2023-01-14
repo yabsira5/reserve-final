@@ -45,6 +45,7 @@ switch($method) {
         $stmt->bindParam(':maxpeople', $room->maxpeople);
         $stmt->bindParam(':disc',$room->disc);
         $stmt->bindParam(':roomNumbers',$room->roomNumbers);
+        
 
         if($stmt->execute()) {
             $response = ['status' => 1, 'message' => 'Record created successfully.'];
@@ -56,7 +57,7 @@ switch($method) {
         
         case "PUT":
         $roome = json_decode( file_get_contents('php://input') );
-        $sql1 = "UPDATE room SET RoomNo =:RoomNo, HotelCode =:HotelCode, title =:title, price =:price, maxpeople =:maxpeople, disc =:disc, roomNumbers =:roomNumbers WHERE RoomNo =:RoomNo";
+        $sql1 = "UPDATE room SET RoomNo =:RoomNo, HotelCode =:HotelCode, title =:title, price =:price, maxpeople =:maxpeople, disc =:disc, roomNumbers =:roomNumbers, Booked_Status =:Booked_Status WHERE RoomNo =:RoomNo";
         $stmt = $conn->prepare($sql1);
         $stmt->bindParam(':RoomNo', $roome->RoomNo);
         $stmt->bindParam(':HotelCode', $roome->HotelCode);
@@ -65,6 +66,7 @@ switch($method) {
         $stmt->bindParam(':maxpeople', $roome->maxpeople);
         $stmt->bindParam(':disc',$roome->disc);
         $stmt->bindParam(':roomNumbers',$roome->roomNumbers);
+        $stmt->bindParam(':Booked_Status',$roome->Booked_Status);
 
 
         if($stmt->execute()) {

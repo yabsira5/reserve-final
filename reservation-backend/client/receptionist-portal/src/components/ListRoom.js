@@ -64,6 +64,7 @@ const deleteRoom = (RoomNo) => {
               <th>maxpeople</th>
               <th>discription</th>
               <th>roomNumbers</th>
+              <th>Room Booked_Status</th>
               <th>Update Room Info</th>
               <th>Delete Room</th>
             </tr>
@@ -78,6 +79,7 @@ const deleteRoom = (RoomNo) => {
                <td>{room.maxpeople}</td>
                <td>{room.disc}</td>
                <td>{room.roomNumbers}</td>
+               <td>{room.Booked_Status}</td>
                
                <td>
                  <Link to={`room/${room.RoomNo}/edit`} style={{marginRight: "10px"}}>Edit</Link>
