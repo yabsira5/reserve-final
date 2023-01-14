@@ -1,4 +1,4 @@
-import React, { useContext,useState } from "react";
+import React, { useContext,useState,useEffect } from "react";
 import { useLocation,useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/UseFetch";
 import { SearchContext } from "../../context/SearchContext";
@@ -11,18 +11,26 @@ import CloseIcon from "@mui/icons-material/Close"
 import PlaceIcon from "@mui/icons-material/Place";
 
 import "./Hotel.css";
+import axios from "axios";
 
 const Hotel = () => {
   //All States
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState([]);
 
    // Use Location for get The Hotel ID
    const location = useLocation();
    const HotelCode = location.pathname.split("/")[2];
+   console.log(HotelCode);
 
    // Use Fetch Function
-  const { data, loading } = useFetch(`/Hotel/hotel/${HotelCode}`);
+   useEffect(() =>{
+    axios.get(`http://localhost/Hotel/hotel/${HotelCode}`).then(function($response){
+      setData($response.data)
+    })
+   })
+  // const { data, loading } = useFetch(`/Hotel/hotel/${HotelCode}`);
 
   // Context (Use Context)
   const { dates, options } = useContext(SearchContext);
@@ -108,16 +116,16 @@ const Hotel = () => {
         )}
         <div className="hotelWrapper">
             <button className="bookNow" onClick={handleClick}>Reserve or Book Now!</button>
-          <h1 className="hotelTitle">Tower Street Apartments</h1>
+          <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <PlaceIcon />
-            <span>Elton St 125 New york</span>
+            <span>{data.address}</span>
           </div>
           <span className="hotelDistance">
-            Excellent location – 500m from center
+            Excellent location – {data.distance} from center
           </span>
           <span className="hotelPriceHighlight">
-            Book a stay over $114 at this property and get a free airport taxi
+            Book a stay over ETB{data.price} at this property and get a {data.featured}
           </span>
           <div className="hotelImages">
             {photos.map((photo, i) => (
@@ -133,29 +141,19 @@ const Hotel = () => {
           </div>
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
-              <h1 className="hotelTitle">Stay in the heart of City</h1>
+              <h1 className="hotelTitle">{data.title}</h1>
               <p className="hotelDesc">
-                Located a 5-minute walk from St. Florian's Gate in Krakow, Tower
-                Street Apartments has accommodations with air conditioning and
-                free WiFi. The units come with hardwood floors and feature a
-                fully equipped kitchenette with a microwave, a flat-screen TV,
-                and a private bathroom with shower and a hairdryer. A fridge is
-                also offered, as well as an electric tea pot and a coffee
-                machine. Popular points of interest near the apartment include
-                Cloth Hall, Main Market Square and Town Hall Tower. The nearest
-                airport is John Paul II International Kraków Balice, 16.1 km
-                from Tower Street Apartments, and the property offers a paid
-                airport shuttle service.
+                {data.disc}
               </p>
             </div>
             <div className="hotelDetailsPrice">
               <h1>Perfect for a {days}-night stay!</h1>
               <span>
-                Located in the real heart of Krakow, this property has an
-                excellent location score of 9.8!
+                Located in the real heart of {data.city}, this property has an
+                excellent location score of {data.rating}!
               </span>
               <h2>
-                <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
+                <b>ETB{days * data.cheapestPrice * options.room}</b> ({days}{" "}
                 nights)
               </h2>
             </div>

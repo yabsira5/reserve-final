@@ -45,8 +45,11 @@ const Header = ({ type }) => {
 
   const handleSearch = () => {
     console.log({state: { destination, dates, options }});
-    navigate("/hotels", { state: { destination, dates, options } });
+    console.log(dispatch);
     dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+    navigate("/hotels", { state: { destination, dates, options } });
+   
+    
     
   };
 

@@ -21,21 +21,23 @@ $price = $_GET['price'];
 
         //List allHotel by city from database
         $sql = "SELECT * from hotel where city='".$city."' ";
-        $path = explode('/', $_SERVER['REQUEST_URI']);
-            if(isset($price) && isset($cheapestPrice)){
-                // grouping them by there price range and ordering by there rating
-                $sql .= "order by cheapestPrice='".$cheapestPrice."' ASC,
-                price='".$price."' DESC,
-                rating DESC, distance ASC  ";
-                $stmt = $conn->prepare($sql);
-                $stmt->execute();
-                $hotels = $stmt->fetchAll(PDO::FETCH_ASSOC);
+       
+        if(isset($price) && isset($cheapestPrice) && is_numeric($price)){
+            // ordering them by there price range , rating and distance
+            $sql .= " AND (price BETWEEN '".$cheapestPrice."' AND '".$price."') 
+            ORDER BY cheapestPrice = '".$cheapestPrice."' DESC,
+             rating DESC, distance ASC LIMIT 0, 10  ";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $hotels = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            }else{
-               
-                $hotels = "Sorry Hotel not found";
+        }else{
 
-            }
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $hotels = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        }
 
         echo json_encode($hotels);
         break;

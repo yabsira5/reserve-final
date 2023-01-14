@@ -14,13 +14,14 @@ import SearchItem from "../../components/searchItem/SearchItem";
 const List = () => {
   const location = useLocation();
   const [destination,setDestination] = useState(location.state.destination); //, setDestination
-  const [dates, setDates] = useState(location.state.dates);
+  const [dates, setDates] = useState(location.state.dates || '');
   const [openDate, setOpenDate] = useState(false);
   const [options,setOptions] = useState(location.state.options); //, setOptions
   const [min, setMin] = useState('');
   const [max, setMax] = useState('');
   const [data, setdata] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [type] = useState(location.state.parma);
     const params = {
       city:destination,
       cheapestPrice:min,
@@ -28,8 +29,12 @@ const List = () => {
       useEffect(() => {
         Searchhotel()
         setLoading(false);
+        if(type){
+          searchtype()
+          setLoading(false);
+        }
       },[])
-
+console.log(type);
 function Searchhotel ()  {
 
    console.log(destination);
@@ -39,10 +44,13 @@ function Searchhotel ()  {
       setdata(res.data);
    })
   }
-  // const handleClick = () => {
-  
-    
-  // }
+ function searchtype () {
+
+  axios.get(`http://localhost/typehotel/hotel.php?type=${type}&cheapestPrice=${min}&price=${max}`).then((res)=>{
+      console.log(res.data)
+      setdata(res.data);
+
+ })}
 
   return (
     <div>
