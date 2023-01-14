@@ -156,12 +156,45 @@ const Hotel = () => {
                 <b>ETB{days * data.cheapestPrice * options.room}</b> ({days}{" "}
                 nights)
               </h2>
+              <button onClick={handleClick}>Reserve or Book Now!</button>
             </div>
           </div>
         </div>
-        {/* Map */}
+
+        {/* Room Categories*/}
+
+        <h2>Room Types</h2> 
+            <div className="roomTypes">
+              {/* Card for rooms */}
+            <div className="projcard-container">
+              <div className="projcard projcard-blue">
+                <div className="projcard-innerbox">
+                  <img className="projcard-img" alt="project" src="https://images.trvl-media.com/hotels/16000000/15170000/15163700/15163659/670976a1.jpg?impolicy=fcrop&w=1200&h=800&p=1&q=medium" />
+                  <div className="projcard-textbox">
+                    <div className="projcard-title">Room Type - Standard Room</div>
+                    <div className="projcard-subtitle">Our Standard Room has:</div>
+                    <div className="projcard-bar"></div>
+                    <div className="projcard-description">
+                      Room Description
+              one of 2 restaurants, serves international cuisine and is open for breakfast, lunch and dinner. 
+              Other highlights at this upmarket hotel include 2 bars/lounges, an indoor pool and a health club. 
+              WiFi.
+                    </div>
+                    <div className="projcard-tagbox">
+                      <button className="bookNow" onClick={handleClick}>Reserve</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+         </div>   
+        </div>
+
+        <div className="maps">
+          {/* Map */}
+        </div>
       </div>
-    </div>
   );
 };
 
