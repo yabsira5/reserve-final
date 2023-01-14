@@ -1,6 +1,6 @@
 import React, { useContext,useState,useEffect } from "react";
 import { useLocation,useNavigate } from "react-router-dom";
-import useFetch from "../../hooks/UseFetch";
+
 import { SearchContext } from "../../context/SearchContext";
 
 import Navbar from "../../components/navbar/Navbar";
@@ -18,19 +18,24 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
+  const [type, setType] = useState([]);
+
 
    // Use Location for get The Hotel ID
    const location = useLocation();
    const HotelCode = location.pathname.split("/")[2];
    console.log(HotelCode);
 
-   // Use Fetch Function
    useEffect(() =>{
     axios.get(`http://localhost/Hotel/hotel/${HotelCode}`).then(function($response){
       setData($response.data)
     })
-   })
-  // const { data, loading } = useFetch(`/Hotel/hotel/${HotelCode}`);
+
+    axios.get(`http://localhost/Roomtype/room/${HotelCode}`).then(function($response){
+      setType($response.data)
+    })
+
+   },[])
 
   // Context (Use Context)
   const { dates, options } = useContext(SearchContext);
@@ -165,20 +170,17 @@ const Hotel = () => {
 
         <h2>Room Types</h2> 
             <div className="roomTypes">
-              {/* Card for rooms */}
-            <div className="projcard-container">
+              {type.map((room)=>(
+            <div className="projcard-container" key={room.title}>
               <div className="projcard projcard-blue">
                 <div className="projcard-innerbox">
                   <img className="projcard-img" alt="project" src="https://images.trvl-media.com/hotels/16000000/15170000/15163700/15163659/670976a1.jpg?impolicy=fcrop&w=1200&h=800&p=1&q=medium" />
                   <div className="projcard-textbox">
-                    <div className="projcard-title">Room Type - Standard Room</div>
-                    <div className="projcard-subtitle">Our Standard Room has:</div>
+                    <div className="projcard-title">Room Type - {room.title}</div>
+                    <div className="projcard-subtitle">Our {room.title} has:</div>
                     <div className="projcard-bar"></div>
                     <div className="projcard-description">
-                      Room Description
-              one of 2 restaurants, serves international cuisine and is open for breakfast, lunch and dinner. 
-              Other highlights at this upmarket hotel include 2 bars/lounges, an indoor pool and a health club. 
-              WiFi.
+                     {room.disc}
                     </div>
                     <div className="projcard-tagbox">
                       <button className="bookNow" onClick={handleClick}>Reserve</button>
@@ -187,13 +189,14 @@ const Hotel = () => {
                 </div>
               </div>
             </div>
-
+              ))}
          </div>   
         </div>
 
         <div className="maps">
           {/* Map */}
         </div>
+        {openModal && <Reserve setOpen={setOpenModal} HotelCode={HotelCode} />}
       </div>
   );
 };
