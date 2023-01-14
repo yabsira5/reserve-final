@@ -196,7 +196,7 @@ const Hotel = () => {
         <div className="maps">
           {/* Map */}
         </div>
-        {openModal && <Reserve setOpen={setOpenModal} HotelCode={HotelCode} />}
+        {/* {openModal && <Reserve setOpen={setOpenModal} HotelCode={HotelCode} />} */}
       </div>
   );
 };
