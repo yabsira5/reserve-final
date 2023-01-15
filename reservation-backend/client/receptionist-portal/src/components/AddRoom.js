@@ -34,10 +34,10 @@ export default function AddRoom(){
         <form onSubmit={handelSubmit}>
       <h1>Add Room</h1>
       
-        <label className="roomlabel">RoomNo:
+        {/* <label className="roomlabel">RoomNo:
           <input className="roominput" value={Inputs.RoomNo} type="number" name="RoomNo" onChange={handleChange}/>
         </label>
-        <br/>
+        <br/> */}
         <label className="roomlabel">HotelCode:
           <input className="roominput" value={Inputs.HoteCode} type="number" name="HotelCode" onChange={handleChange}/>
         </label>
@@ -46,7 +46,7 @@ export default function AddRoom(){
         </label>
         <br/>
         <label className="roomlabel">price:
-          <input className="roominput" value={Inputs.price} type="text" name="price" onChange={handleChange}/>
+          <input className="roominput" value={Inputs.price} type="number" name="price" onChange={handleChange}/>
         </label>
         <br/>
         <label className="roomlabel">maxpeople:

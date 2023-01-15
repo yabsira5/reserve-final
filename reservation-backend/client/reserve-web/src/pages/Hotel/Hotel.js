@@ -1,5 +1,5 @@
 import React, { useContext,useState,useEffect } from "react";
-import { useLocation,useNavigate } from "react-router-dom";
+import { Link, useLocation,useNavigate } from "react-router-dom";
 
 import { SearchContext } from "../../context/SearchContext";
 
@@ -9,6 +9,7 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 import CloseIcon from "@mui/icons-material/Close"
 import PlaceIcon from "@mui/icons-material/Place";
+import Reserve from "../../components/reserve/Reserve";
 
 import "./Hotel.css";
 import axios from "axios";
@@ -20,6 +21,7 @@ const Hotel = () => {
   const [data, setData] = useState([]);
   const [type, setType] = useState([]);
   const [check, setCheck] = useState('');
+  // const [openModal, setOpenModal] = useState(false);
 
 
    // Use Location for get The Hotel ID
@@ -49,6 +51,8 @@ const Hotel = () => {
    
 
    },[])
+
+   const RoomNo = type.RoomNo;
 
   // Context (Use Context)
   const { dates, options } = useContext(SearchContext);
@@ -103,11 +107,13 @@ const Hotel = () => {
 
     setSlideNumber(newSlideNumber)
   };
-  const handleClick = () => {
-     if(true) {
-      navigate("/reserve");
-    }
-  };
+  // const handleClick = () => {
+
+  //    {<Reserve  HotelCode={HotelCode} RoomNo ={type.RoomNo}  />}
+     
+  //      navigate(`/reserve/${type.RoomNo}`);
+    
+  // };
 
   return (
     <div>
@@ -133,7 +139,7 @@ const Hotel = () => {
           </div>
         )}
         <div className="hotelWrapper">
-            <button className="bookNow" onClick={handleClick}>Reserve or Book Now!</button>
+            <button className="bookNow" >Reserve or Book Now!</button>
           <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <PlaceIcon />
@@ -174,7 +180,7 @@ const Hotel = () => {
                 <b>ETB{days * data.cheapestPrice * options.room}</b> ({days}{" "}
                 nights)
               </h2>
-              <button onClick={handleClick}>Reserve or Book Now!</button>
+              <button >Reserve or Book Now!</button>
             </div>
           </div>
         </div>
@@ -185,7 +191,7 @@ const Hotel = () => {
             <div className="roomTypes">
              
               {type.map((room)=>(
-                //  (() =>{
+                // { (() =>{
                 //   if(check.RoomNo != room.RoomNo) {
             <div className="projcard-container" key={room.title}>
               <div className="projcard projcard-blue">
@@ -198,15 +204,18 @@ const Hotel = () => {
                     <div className="projcard-description">
                      {room.disc}
                     </div>
-                    <div className="projcard-tagbox">
-                      <button className="bookNow" onClick={handleClick}>Reserve</button>
+                    <div className="hotelDetailsPrice">
+                      <Link to = {`/reserve/${room.RoomNo}`}>
+                      <button >Reserve
+                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             //   }
-            // })
+            // }) ()}
 
               ))}
           
@@ -216,7 +225,7 @@ const Hotel = () => {
         <div className="maps">
           {/* Map */}
         </div>
-        {/* {openModal && <Reserve setOpen={setOpenModal} HotelCode={HotelCode} />} */}
+       
       </div>
   );
 };

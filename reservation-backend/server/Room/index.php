@@ -12,7 +12,9 @@ $conn = $objDb->connect();
 $method = $_SERVER['REQUEST_METHOD'];
 switch($method) {
     case "GET":
-        $sql = "SELECT * FROM room";// join statment needed
+        $sql = "SELECT room.RoomNo, room.HotelCode, room.title, room.price, hotel.name 
+        FROM room
+        inner join hotel on room.HotelCode = hotel.HotelCode";
         $path = explode('/', $_SERVER['REQUEST_URI']);
         $room = json_decode( file_get_contents("php://input") );
         if(isset($path[3]) && is_numeric($path[3])) {

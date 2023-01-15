@@ -15,7 +15,7 @@ export default function ListBooked(){
   useEffect (() => { 
     hotel = JSON.parse(localStorage.getItem('authemp'));
     if(hotel){
-        setItems(hotel);
+        // setItems(hotel);
         console.log(hotel)
     };
     getBooked();
@@ -32,7 +32,7 @@ export default function ListBooked(){
 
 function deleteBooked(BookingID){
   
-  axios.get(`http://localhost/Booking/booking/${BookingID}`).then(function ($response){
+  axios.delete(`http://localhost/Booking/booking/${BookingID}`).then(function ($response){
     console.log($response.data);
     getBooked();  
   });

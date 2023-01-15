@@ -28,7 +28,7 @@ function App() {
           <Route path="/checkout" element={<OrderSummary/>}/>
           <Route path="/login" element={<Login/>}/>
           <Route path="/signUp" element={<SignUp/>}/>
-          <Route path="/reserve" element={<Reserve/>}/>
+          <Route path="/reserve/:RoomNo" element={<Reserve/>}/>
           <Route path="/profile">
             <Route index element={<Profile/>}/>
           <Route path="profile/:UserID/edit" element={<EditProfile />} />

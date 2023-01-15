@@ -37,13 +37,13 @@ switch($method) {
     case "POST":
         $book = json_decode( file_get_contents("php://input") );
         $sql = "INSERT INTO booking(BookingID, HotelCode ,UserID ,RoomNo ,BookingDate ,CheckIn ,CheckOut ,NumAdults ,NumChildren) 
-        VALUES(:BookingID, :HotelCode, :UserID, :RoomNo, :BookingDate, :CheckIn, :CheckOut, :NumAdults, :NumChildren)";
+        VALUES(:BookingID, :HotelCode, :UserID, :RoomNo, Now(), :CheckIn, :CheckOut, :NumAdults, :NumChildren)";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':BookingID', $book->BookingID);
         $stmt->bindParam(':HotelCode', $book->HotelCode);
         $stmt->bindParam(':UserID', $book->UserID);
         $stmt->bindParam(':RoomNo', $book->RoomNo);
-        $stmt->bindParam(':BookingDate', $book->BookingDate);
+        // $stmt->bindParam(':BookingDate', $book->BookingDate);
         $stmt->bindParam(':CheckIn',$book->CheckIn);
         $stmt->bindParam(':CheckOut',$book->CheckOut);
         $stmt->bindParam(':NumAdults',$book->NumAdults);

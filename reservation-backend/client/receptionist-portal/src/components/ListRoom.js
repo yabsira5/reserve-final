@@ -9,24 +9,24 @@ import '../pages/list/list.css'
 
 export default function ListRooms(){
 
-  let {hotelID} = useParams();
+  let {HotelCode} = useParams();
   
   const [item, setItems] = useState([]);
   useEffect (() => { 
-    hotelID = JSON.parse(localStorage.getItem('authemp'));
-    if(hotelID){
-        setItems(hotelID);
-        console.log(hotelID)
+    HotelCode = JSON.parse(localStorage.getItem('authemp'));
+    if(HotelCode){
+        // setItems(HotelCode);
+        console.log(HotelCode)
     }
     getRooms();
-}, 
-[]);
+}, []);
   
   function getRooms(){
-    console.log('HotelCode:'+hotelID)
-    axios.get(`http://localhost/Mroom/room/${hotelID}`).then(function ($response){
+    console.log('HotelCode:'+HotelCode)
+    axios.get(`http://localhost/Mroom/room/${HotelCode}`).then(function ($response){
       console.log($response.data);
-      setItems($response.data);  
+      setItems($response.data);
+      console.log(item);  
     });
 }
 

@@ -12,13 +12,14 @@ $conn = $objDb->connect();
 $method = $_SERVER['REQUEST_METHOD'];
 switch($method) {
     case "GET":
-        $sql = "SELECT * FROM room";// join statment needed
+         //List allRoom by HotelCode from database
+        $sql = "SELECT * FROM room";
         $path = explode('/', $_SERVER['REQUEST_URI']);
         $room = json_decode( file_get_contents("php://input") );
         if(isset($path[3]) && is_numeric($path[3])) {
-            $sql .= " WHERE HotelCode = :hotelcode";
+            $sql .= " WHERE HotelCode = :HotelCode";
             $stmt = $conn->prepare($sql);
-            $stmt->bindParam(':hotelcode', $path[3]);
+            $stmt->bindParam(':HotelCode', $path[3]);
             $stmt->execute();
             $rooms = $stmt->fetchALL(PDO::FETCH_ASSOC);
         } else {

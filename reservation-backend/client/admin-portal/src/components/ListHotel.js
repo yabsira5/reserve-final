@@ -15,9 +15,9 @@ export default function ListHotel(){
 },[]);
 
 function getHotels(){
- axios.get('http://localhost/hotel/hotel/').then(function(response){
-    console.log(response.data);
-    setHotels(response.data);
+ axios.get('http://localhost/Hotel/hotel/').then(function($response){
+    console.log($response.data);
+    setHotels($response.data);
  });
 }
 

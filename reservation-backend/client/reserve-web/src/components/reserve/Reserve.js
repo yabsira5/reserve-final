@@ -1,13 +1,72 @@
 import React from 'react'
 import './Reserve.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,useParams,useLocation } from 'react-router-dom';
+import { useContext, useState,useEffect } from "react";
+import { SearchContext } from "../../context/SearchContext";
+import axios from "axios";
 
-const Reserve = ({setOpen}) => {
+const Reserve = () => {
+    const location = useLocation();
+   const RoomNo = location.pathname.split("/")[2];
+   
+    let {UserID} = useParams();
+    const [profiles, setProfile] = useState([]);
+    const [selectedRooms, setSelectedRooms] = useState([]);
     const navigate = useNavigate();
 
+    useEffect (() => {
+    
+        UserID = JSON.parse(localStorage.getItem('auth'));
+        console.log(UserID);
+ 
+        
+            axios.get(`http://localhost/User/RUser/user/${UserID}`)
+            .then(function ($response){
+              setProfile($response.data);
+              console.log($response.data)
+            })
+            console.log(profiles)
+
+
+           
+
+             axios.get(`http://localhost/Room/room/${RoomNo}`)
+            .then(function ($response){
+              setSelectedRooms($response.data);
+              console.log($response.data)
+            })
+            console.log(RoomNo)
+            console.log(selectedRooms)
+            
+            
+           
+        
+    }, 
+    []);
+    const {dates, options} = useContext(SearchContext);
+  
+      console.log(dates);
+    
+   
+    
+    const sendData = {
+        HotelCode:selectedRooms.HotelCode,
+        UserID:profiles.UserID,
+        RoomNo:selectedRooms.RoomNo,
+        CheckIn:dates[0].startDate,
+        CheckOut:dates[0].endDate,
+        NumAdults:options.adult,
+        NumChildren:options.children
+    }
+
+    console.log(sendData)
     const handleClick = () => {
         if(true) {
-         navigate("/checkout");
+            axios.post(`http://localhost/Booking/booking/save`,sendData ).then(function($response){
+                console.log($response.data)
+                navigate("/checkout");
+            })
+         
        }
      };
   return (
@@ -25,20 +84,21 @@ const Reserve = ({setOpen}) => {
                 <div className="roomContainer container">
                     <div className="room">
                         <div className="roomInfo">
-                             <h3 className="roomTitle">Room Title</h3>
-                            <p className="roomPrice">Addis hotel</p>
+                             <h3 className="roomTitle">{selectedRooms.title}</h3>
+                            <p className="roomPrice">From Hotel {selectedRooms.name}</p>
                         </div>
                         <div className="roomInfo">
                              <h3 className="roomTitle">Room Price</h3>
-                            <p className="roomPrice">ETB 315</p>
+                            <p className="roomPrice">ETB {selectedRooms.price}</p>
                         </div>
                         <div className="roomInfo">
                              <h3 className="roomTitle">Booked By</h3>
-                            <p className="roomPrice">Username</p>
+                            <p className="roomPrice">{profiles.Username}</p>
                         </div>
                         <div className="roomInfo">
                              <h3 className="roomTitle">Phone Number</h3>
-                            <p className="roomPrice">0911122234</p>
+                            <p className="roomPrice">{profiles.Phone}</p>
+                            
                         </div>
                 </div> 
             </div>

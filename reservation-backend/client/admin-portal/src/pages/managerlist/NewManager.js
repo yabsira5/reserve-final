@@ -34,10 +34,10 @@ export default function AddManager(){
         <form onSubmit={handelSubmit}>
       <h1>Add Manager</h1>
       
-      <label className="managerlabel">EmployeeID:
+      {/* <label className="managerlabel">EmployeeID:
           <input className="managerinput" value={Inputs.EmployeeID} type="number" name="EmployeeID" onChange={handleChange}/>
         </label>
-        <br/>
+        <br/> */}
       <label className="managerlabel">HotelCode:
           <input className="managerinput" value={Inputs.HotelCode} type="number" name="HotelCode" onChange={handleChange}/>
         </label>

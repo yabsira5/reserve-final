@@ -11,7 +11,7 @@ const NewHotel = () => {
 
   
       const [Inputs, setFormValues] = useState({
-        HotelCode: "",
+        // HotelCode: "",
         name:"",
         type:"",
         city:"",
@@ -45,7 +45,7 @@ const NewHotel = () => {
            formData.append("fileData", selectedFile);
            console.log(formData);
           const sendData = {
-            HotelCode:Inputs.HotelCode,
+            // HotelCode:Inputs.HotelCode,
             name:Inputs.name,
             type:Inputs.type,
             city:Inputs.city,
@@ -87,10 +87,10 @@ const NewHotel = () => {
       <div className="roomForm"></div>               
       <form onSubmit={handleSubmit}>
       <h1>Add New Hotel</h1>
-      <label className="managerlabel">HotelCode:
+      {/* <label className="managerlabel">HotelCode:
           <input className="managerinput" value={Inputs.HotelCode || ""} type="text" name="HotelCode" onChange={handleChange}/>
         </label>
-        <br/>
+        <br/> */}
         <label className="managerlabel">Name of the Hotel:
           <input className="managerinput" value={Inputs.name || ""} type="text" name="name" onChange={handleChange}/>
         </label>

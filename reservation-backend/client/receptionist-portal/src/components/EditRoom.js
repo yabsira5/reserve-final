@@ -16,7 +16,7 @@ export default function EditRoom(){
   },[]);
   
   function getRoom(){
-    axios.get(`http://localhost/Room/room/${RoomNo}`).then(function ($response){
+    axios.get(`http://localhost/Eroom/room/${RoomNo}`).then(function ($response){
       console.log($response.data);
       setInputs($response.data);  
     });
@@ -46,11 +46,6 @@ export default function EditRoom(){
         <form onSubmit={handelSubmit}>
 
         <h1>Edit Room</h1>
-      
-        <label className="roomlabel">RoomNo:
-          <input className="roominput" value={Inputs.RoomNo} type="number" name="RoomNo" onChange={handleChange}/>
-        </label>
-        <br/>
         <label className="roomlabel">Title:
           <input className="roominput" value={Inputs.title} type="text" name="title" onChange={handleChange}/>
         </label>
