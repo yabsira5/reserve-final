@@ -9,73 +9,70 @@
     align-items: center;
     justify-content: center;
   }
-  
-  .rContainer {
-    background-color: white;
-    padding: 20px;
-    position: relative;
+  .roomContainer{
+    width: 450px;
+    background-color: #fff; 
+    border-radius: 1rem; 
+    text-align: center;
+    color: var(--n-dark-blue);
+    margin-bottom: 1rem; 
   }
-  
-  .rClose {
-    position: absolute;
-    top: 0;
-    right: 0;
-    cursor: pointer;
-  }
-  
-  .rItem {
-    display: flex;
-    align-items: center;
-    gap: 50px;
-    padding: 20px;
-  }
-  
-  .rInfo {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .rTitle {
-    font-weight: 500;
-    font-size: 18px;
-  }
-  
-  .rDesc {
-    font-weight: 300;
-    font-size: 16px;
-  }
-  
-  .rMax {
-    font-size: 18px;
-  }
-  
-  .rPrice {
-    font-weight: 500;
-    font-size: 24px;
-  }
-  
-  .rSelectRooms{
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    font-size: 14px;
-    color: gray;
-  }
-  
-  .room{
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .rButton {
-    border: none;
-    padding: 10px 20px;
-    background-color: #0071c2;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 5px;
-    width: 100%;
+  .hero{
+    width: 26rem;
+    border-radius: 10px;
     margin-top: 20px;
   }
+  .summeryDescription {
+    color: black;
+    padding-bottom: 1rem;  
+    font-size: 16px; 
+}
+
+.summeryTitle {
+    padding: 1rem 0 1rem 0; 
+    font-weight: 900;  
+}
+
+
+.room {
+    display: flex;
+    flex-direction: column;
+}
+
+.roomInfo {
+    padding-left: 1rem; 
+    text-align: left; 
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
+}
+
+.btn {
+    display: inline-block;  
+    margin: auto;   
+    font-size: 1rem; 
+    outline: none;
+    border: none; 
+    background: none; 
+    padding: 1rem 1.5rem;
+    border-radius: 1rem; 
+    font-weight: 700;
+    cursor: pointer;     
+}
+
+
+.proceedBtn {
+    color: black;
+    margin-bottom: 2rem; 
+}
+
+.proceedBtn:hover {
+    background-color: blue;
+}
+
+.cancelBtn {
+    margin-bottom: 2rem;
+    color: var(--n-desaturated-blue);
+}
+
+  
