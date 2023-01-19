@@ -60,7 +60,7 @@ export default function AddRoom(){
         </label>
         <br/>
         <label className="roomrlabel">
-          <h4>Select a Photo for the Rooml</h4>
+          <h4>Select a Photo for the Room</h4>
           <div>
           <input className="roominput" type="file"  name="file"  onChange={handleChangefile}/>
           </div>        

@@ -8,6 +8,8 @@ export default function EditRoom(){
   const navigate = useNavigate();
   
   const [Inputs, setInputs] = useState({});
+  const[selectedFile, setSelectedFile] = useState(null);
+
   
   const {RoomNo} = useParams();
 
@@ -30,8 +32,24 @@ export default function EditRoom(){
       //... to create single jsone date fro th form inputs.
   }
 
+  const handleChangefile =(e) => {
+         
+    setSelectedFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+
+  };
+
   const handelSubmit = (event) => {
    event.preventDefault();
+
+   const formData = new FormData();
+
+   formData.append("RoomNo", RoomNo);
+   formData.append("file", selectedFile);
+   axios.post( `http://localhost/fileupload/room/insert.php`,formData)
+          .then((result)=>{
+            console.log(result.data);
+          })
     
    axios.put(`http://localhost/Room/room/${RoomNo}/edit`,Inputs).then(function ($response){
     console.log($response.data);
@@ -50,6 +68,12 @@ export default function EditRoom(){
           <input className="roominput" value={Inputs.title} type="text" name="title" onChange={handleChange}/>
         </label>
         <br/>
+        <label className="roomrlabel">
+          <h4>Update  Photo for the Room</h4>
+          <div>
+          <input className="roominput" type="file"  name="file"  onChange={handleChangefile}/>
+          </div>        
+        </label>
         <label className="roomlabel">Price:
           <input className="roominput" value={Inputs.price} type="text" name="price" onChange={handleChange}/>
         </label>

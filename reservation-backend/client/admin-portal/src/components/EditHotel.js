@@ -8,11 +8,13 @@ export default function EditHotel(){
     const navigate = useNavigate();
     
     const [Inputs, setInputs] = useState({});
+    const[selectedFile, setSelectedFile] = useState([]);
     
     const {HotelCode} = useParams();
   
      useEffect(() => { 
       getUser();
+
     },[]);
     
     function getUser(){
@@ -29,10 +31,26 @@ export default function EditHotel(){
       setInputs(values => ({...values, [name]: value}));
         //... to create single jsone date fro th form inputs.
     }
+
+    const handleChangefile =(e) => {
+         
+      setSelectedFile(e.target.files);
+      console.log(e.target.files);
+  
+    };
   
     const handelSubmit = (event) => {
      event.preventDefault();
-      
+
+     const formData = new FormData();
+     formData.append('HotelCode',HotelCode)
+     for (let i = 0; i < selectedFile.length; i++){
+      formData.append('file[]', selectedFile[i])
+     }
+     axios.post( `http://localhost/fileupload/hotel/insert.php`,formData)
+          .then((result)=>{
+            console.log(result.data);
+          })
      axios.put(`http://localhost/Hotel/hotel/${HotelCode}/edit`,Inputs).then(function ($response){
       console.log($response.data);
       navigate("/hotels");
@@ -47,7 +65,7 @@ export default function EditHotel(){
       <form onSubmit={handelSubmit}>
       <h1>Edit Hotel</h1>
 
-        <label className="managerlabel">Name of the Hotel:
+      <label className="managerlabel">Name of the Hotel:
           <input className="managerinput" value={Inputs.name || ""} type="text" name="name" onChange={handleChange}/>
         </label>
         <br/>
@@ -61,6 +79,19 @@ export default function EditHotel(){
         <br/>
         <label className="managerlabel">Address:
           <input className="managerinput" value={Inputs.address || ""} type="text" name="address" onChange={handleChange}/>
+        </label>
+        <br/>
+        <label className="managerlabel">Distance:
+          <input className="managerinput" value={Inputs.distance || ""} type="text" name="distance" onChange={handleChange}/>
+        </label>
+        <label className="managerlabel">
+          <h4>Change All  Photos of the Hotel</h4>
+          
+          <div>
+          <input className="managerinput" type="file"  name="file[]" multiple onChange={handleChangefile}/>
+        
+          </div>
+          
         </label>
         <br/>
         <label className="managerlabel">title:
@@ -79,15 +110,19 @@ export default function EditHotel(){
           <input className="managerinput" value={Inputs.rooms || ""} type="number" name="rooms" onChange={handleChange}/>
         </label>
         <br/>
+        <label className="managerlabel">price:
+          <input className="managerinput" value={Inputs.price || ""} type="number" name="price" onChange={handleChange}/>
+        </label>
+        <br/>
         <label className="managerlabel">cheapestPrice:
-          <input className="managerinput" value={Inputs.cheapestPrice || ""} type="text" name="cheapestPrice" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.cheapestPrice || ""} type="number" name="cheapestPrice" onChange={handleChange}/>
         </label>
         <br/>
         <label className="managerlabel">featured:
           <input className="managerinput" value={Inputs.featured || ""} type="text" name="featured" onChange={handleChange}/>
         </label>
         <br/>
-        <button className="managerbutton">Update</button>
+        <button className="managerbutton" type="submit" name="submit">update</button>
       </form>
       </div>
       </div> 
