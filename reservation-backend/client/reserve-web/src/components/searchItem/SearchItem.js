@@ -8,11 +8,13 @@ import Hotel from "../../pages/Hotel/Hotel";
 const SearchItem = ({hotel}) => {
   console.log(hotel)
 
+  const img = hotel.photo?.split(',') || [];
+
   return (
     <div className="searchItem">
      
       <img
-        src="https://cf.bstatic.com/xdata/images/hotel/square600/261707778.webp?k=fa6b6128468ec15e81f7d076b6f2473fa3a80c255582f155cae35f9edbffdd78&o=&s=1"
+        src={`http://localhost/fileupload/hotel/images/${img[0]}`}
         alt=""
         className="siImg"
       />
@@ -28,7 +30,8 @@ const SearchItem = ({hotel}) => {
         {hotel.featured}
         </span>
       </div>
-      <div className="siDetails">{hotel.disc}
+      <div className="siDetails">
+        {hotel.disc}
         <div className="siRating">
           <button>{hotel.rating}</button>
         </div>

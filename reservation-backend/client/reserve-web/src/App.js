@@ -15,6 +15,7 @@ import Reserve from "./components/reserve/Reserve";
 import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/Profile/EditProfile"
 import SearchItem from "./components/searchItem/SearchItem";
+import sms from "./components/reserve/sms";
 
 function App() {
     return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/login" element={<Login/>}/>
           <Route path="/signUp" element={<SignUp/>}/>
           <Route path="/reserve/:RoomNo" element={<Reserve/>}/>
+          <Route path="/sms" element={<sms/>} />
           <Route path="/profile">
             <Route index element={<Profile/>}/>
           <Route path="profile/:UserID/edit" element={<EditProfile />} />

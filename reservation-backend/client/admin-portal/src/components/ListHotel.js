@@ -3,11 +3,14 @@ import { useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
 import NavBar from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
+// import images from `http://localhost/fileupload/hotel/images/hotel/images`;
 
 import '../pages/list/list.css'
 
 export default function ListHotel(){
  
+  const [slideNumber, setSlideNumber] = useState(0);
+  const [open, setOpen] = useState(false);
   const [hotels,setHotels] = useState([]);
 
    useEffect(() => {
@@ -28,6 +31,24 @@ const deleteHotel = (id) =>{
  });
 }
 
+// handle open function
+const handleOpen = (i) => {
+  setSlideNumber(i);
+  setOpen(true);
+};
+
+// Handle Move Function
+const handleMove = (direction) => {
+  let newSlideNumber;
+
+  if (direction === "l") {
+    newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
+  } else {
+    newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+  }
+
+  setSlideNumber(newSlideNumber);
+};
     
   return(
    <div>
@@ -54,6 +75,7 @@ const deleteHotel = (id) =>{
                   <th>city</th>
                   <th>address</th>
                   <th>title</th>
+                  <th>Image</th>
                   <th>descrp</th>
                   <th>rating</th>
                   <th>rooms</th>
@@ -65,12 +87,19 @@ const deleteHotel = (id) =>{
             <tbody>
             {hotels.map((hotel,key) =>
               <tr key={key}>
+                     {/* <div>{hotel.photo.split(',')}</div> */}
                     <td>{hotel.HotelCode}</td>
                     <td>{hotel.name}</td>
                     <td>{hotel.type}</td>
                     <td>{hotel.city}</td>
                     <td>{hotel.address}</td>
                     <td>{hotel.title}</td>
+                    <td>{hotel.photo.split(',').map((img)=>(<img
+                      //  onClick={setOpen(true)} 
+                      src={`http://localhost/fileupload/hotel/images/${img}`} 
+                      width='100' height={100}/>
+                      ))}
+                      </td>
                     <td>{hotel.disc}</td>
                     <td>{hotel.rating}</td>
                     <td>{hotel.rooms}</td>

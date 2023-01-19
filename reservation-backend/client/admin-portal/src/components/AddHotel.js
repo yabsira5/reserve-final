@@ -6,12 +6,10 @@ import './tableDesign.css'
 const NewHotel = () => {
   const navigate = useNavigate();
 
-  // const [file, setFile] = useState("");
- //const   nav = useNavigate();
-
+ 
   
       const [Inputs, setFormValues] = useState({
-        // HotelCode: "",
+  
         name:"",
         type:"",
         city:"",
@@ -21,10 +19,11 @@ const NewHotel = () => {
         disc:"",
         rating:"",
         rooms: "",
+        price:"",
         cheapestPrice:"",
         featured:"",
        });
-      const[selectedFile, setSelectedFile] = useState(null);
+      const[selectedFile, setSelectedFile] = useState([]);
 
         const handleChange = (e) => {
           const { name, value } = e.target;
@@ -32,35 +31,41 @@ const NewHotel = () => {
         };
 
         const handleChangefile =(e) => {
-          console.log(e.target.files[0]);
-          setSelectedFile({selectedFile: e.target.files[0]});
-          console.log({selectedFile: e.target.files[0]})
-          console.log(selectedFile);
-        }
+         
+          setSelectedFile(e.target.files);
+          console.log(e.target.files);
       
+        };
+        console.log(selectedFile)
+
+      
+
         const handleSubmit = (event) => {
           event.preventDefault();
 
-          const formData = new FormData();
-           formData.append("fileData", selectedFile);
+        
+
+           const formData = new FormData();
+           formData.append("name", Inputs.name);
+           formData.append("type", Inputs.type);
+           formData.append("city", Inputs.city);
+           formData.append("address", Inputs.address);
+           formData.append("distance", Inputs.distance);
+           for (let i = 0; i < selectedFile.length; i++){
+            formData.append('file[]', selectedFile[i])
+           }
+           
+           formData.append("title", Inputs.title);
+           formData.append("disc", Inputs.disc);
+           formData.append("rating", Inputs.rating);
+           formData.append("rooms",Inputs.rooms);
+           formData.append("price", Inputs.price);
+           formData.append("cheapestPrice", Inputs.cheapestPrice);
+           formData.append("featured", Inputs.featured);
+           
            console.log(formData);
-          const sendData = {
-            // HotelCode:Inputs.HotelCode,
-            name:Inputs.name,
-            type:Inputs.type,
-            city:Inputs.city,
-            address:Inputs.address,
-            distance:Inputs.distance,
-            photo:formData,
-            title:Inputs.title,
-            disc:Inputs.disc,
-            rating:Inputs.rating,
-            rooms: Inputs.rooms,
-            cheapestPrice:Inputs.cheapestPrice,
-            featured:Inputs.featured,
-          }
-          console.log(sendData);
-          axios.post('http://localhost/fileupload/hotel/insert.php',sendData)
+        
+          axios.post('http://localhost/fileupload/hotel/upload.php',formData)
     
           .then((result)=>{
             if(result.status === 201 && result.post ) {
@@ -68,29 +73,20 @@ const NewHotel = () => {
             }
             else {
               console.log(result.data)
-              // alert("Hotel added succscsfully!");
-              // navigate('/hotels')
+               alert("Hotel added succscsfully!");
+               navigate('/hotels')
                }
           })
        
 
         }
-        // const fileSubmit =(e)=>{
-        //   e.preventDefault();
-        //   const formData = new FormData();
-        //   formData.append("photo", selectedFile);
-        //   axios.post(`http://localhost/upload/hotel/${Inputs.HotelCode}`, formData)      
-        // }
+      
 
   return (
     <div className="addBody">
       <div className="roomForm"></div>               
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType='multipart/form-data'>
       <h1>Add New Hotel</h1>
-      {/* <label className="managerlabel">HotelCode:
-          <input className="managerinput" value={Inputs.HotelCode || ""} type="text" name="HotelCode" onChange={handleChange}/>
-        </label>
-        <br/> */}
         <label className="managerlabel">Name of the Hotel:
           <input className="managerinput" value={Inputs.name || ""} type="text" name="name" onChange={handleChange}/>
         </label>
@@ -112,8 +108,12 @@ const NewHotel = () => {
         </label>
         <label className="managerlabel">
           <h4>Select a Photo of the Hotel</h4>
-          <input className="managerinput" type='file' onChange={handleChangefile} name='photo'multiple/>
-          {/* <div><button>Upload Image</button></div> */}
+          
+          <div>
+          <input className="managerinput" type="file"  name="file[]" multiple onChange={handleChangefile}/>
+        
+          </div>
+          
         </label>
         <br/>
         <label className="managerlabel">title:
@@ -132,22 +132,22 @@ const NewHotel = () => {
           <input className="managerinput" value={Inputs.rooms || ""} type="number" name="rooms" onChange={handleChange}/>
         </label>
         <br/>
+        <label className="managerlabel">price:
+          <input className="managerinput" value={Inputs.price || ""} type="number" name="price" onChange={handleChange}/>
+        </label>
+        <br/>
         <label className="managerlabel">cheapestPrice:
-          <input className="managerinput" value={Inputs.cheapestPrice || ""} type="text" name="cheapestPrice" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.cheapestPrice || ""} type="number" name="cheapestPrice" onChange={handleChange}/>
         </label>
         <br/>
         <label className="managerlabel">featured:
           <input className="managerinput" value={Inputs.featured || ""} type="text" name="featured" onChange={handleChange}/>
         </label>
         <br/>
-        <button className="managerbutton">Submit</button>
+        <button className="managerbutton" type="submit" name="submit">Submit</button>
       </form>
       
-      {/* <label onSubmit={fileSubmit}>
-          <div>Select a Photo of the Hotel</div>
-          <input  type='file' onChange={handleChangefile} name='photo[]'multiple/>
-          <div><button>Upload Image</button></div>
-        </label> */}
+     
         
       </div>
   )

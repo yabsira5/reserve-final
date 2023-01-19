@@ -60,6 +60,7 @@ const deleteRoom = (RoomNo) => {
             <tr>
               <th>RoomNo</th>
               <th>title</th>
+              <th>Photo</th>
               <th>price</th>
               <th>maxpeople</th>
               <th>discription</th>
@@ -75,6 +76,7 @@ const deleteRoom = (RoomNo) => {
            <tr key={key}>
                <td>{room.RoomNo}</td>
                <td>{room.title}</td>
+               <td><img src ={`http://localhost/fileupload/room/images/${room.img}`} width='100' height={100}/></td>
                <td>{room.price}</td>
                <td>{room.maxpeople}</td>
                <td>{room.disc}</td>

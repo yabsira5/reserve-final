@@ -8,6 +8,7 @@ export default function AddRoom(){
   const navigate = useNavigate();
   
   const [Inputs, setInputs] = useState({});
+  const[selectedFile, setSelectedFile] = useState(null);
   
 
   const handleChange = (event) => {
@@ -18,12 +19,29 @@ export default function AddRoom(){
       //... to create single jsone date fro th form inputs.
   }
 
+  const handleChangefile =(e) => {
+         
+    setSelectedFile(e.target.files[0]);
+    console.log(e.target.files[0]);
+
+  };
+
   const handelSubmit = (event) => {
    event.preventDefault();
+
+   const formData = new FormData();
+
+   formData.append("HotelCode", Inputs.HotelCode);
+   formData.append("title", Inputs.title);
+   formData.append("file", selectedFile);
+   formData.append("price", Inputs.price);
+   formData.append("maxpeople", Inputs.maxpeople);
+   formData.append("disc", Inputs.disc);
+   formData.append("roomNumbers", Inputs.roomNumbers);
     
-   axios.post(`http://localhost/Room/room/save`,Inputs).then(function ($response){
+   axios.post('http://localhost/fileupload/room/upload.php',formData).then(function ($response){
     console.log($response.data);
-    navigate("/");
+     navigate("/");
    
    });
    
@@ -31,20 +49,22 @@ export default function AddRoom(){
   return(
       <div className="roomBody">
         <div className="roomForm">
-        <form onSubmit={handelSubmit}>
+        <form onSubmit={handelSubmit} >
       <h1>Add Room</h1>
       
-        {/* <label className="roomlabel">RoomNo:
-          <input className="roominput" value={Inputs.RoomNo} type="number" name="RoomNo" onChange={handleChange}/>
-        </label>
-        <br/> */}
         <label className="roomlabel">HotelCode:
-          <input className="roominput" value={Inputs.HoteCode} type="number" name="HotelCode" onChange={handleChange}/>
+          <input className="roominput" value={Inputs.HotelCode} type="number" name="HotelCode" onChange={handleChange}/>
         </label>
         <label className="roomlabel">title:
           <input className="roominput" value={Inputs.title} type="text" name="title" onChange={handleChange}/>
         </label>
         <br/>
+        <label className="roomrlabel">
+          <h4>Select a Photo for the Rooml</h4>
+          <div>
+          <input className="roominput" type="file"  name="file"  onChange={handleChangefile}/>
+          </div>        
+        </label>
         <label className="roomlabel">price:
           <input className="roominput" value={Inputs.price} type="number" name="price" onChange={handleChange}/>
         </label>
@@ -62,7 +82,7 @@ export default function AddRoom(){
         </label>
         <br/>
       
-        <button className="roombutton">Submit</button>
+        <button className="roombutton" name="submit">Submit</button>
 
       </form>
       </div>

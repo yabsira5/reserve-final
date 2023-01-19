@@ -15,7 +15,7 @@ const Home = () => {
       <Navbar />
       <Header/>
       <div className="homeContainer">
-        <h1 className="homeTitle">Browse by property type</h1>
+        <h1 className="homeTitle">We have property type</h1>
         <PropertyList/>
         
         <h1 className="homeTitle">Our Cities</h1>

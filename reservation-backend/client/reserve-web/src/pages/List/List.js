@@ -134,9 +134,10 @@ function Searchhotel ()  {
               "loading, Please wait"
             ):(
               <>
-            {data.map((hotel) => (
-            
+            {data.map((hotel,key) => (
+            <div key={key}>
              <SearchItem hotel={hotel} key={hotel.HotelCode}  />
+             </div>
              
             ))}
             </>

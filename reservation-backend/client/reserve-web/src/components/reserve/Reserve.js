@@ -64,7 +64,19 @@ const Reserve = () => {
         if(true) {
             axios.post(`http://localhost/Booking/booking/save`,sendData ).then(function($response){
                 console.log($response.data)
-                navigate("/checkout");
+                // {profiles.Phone,dates[0].startData,dates[0].endDate}
+            //     navigate("/sms",
+            //     {
+            //  state: {
+            //         Hotel:selectedRooms.name,
+            //         Username:profiles.Username,
+            //         Phone:profiles.Phone,
+            //         CheckIn:dates[0].startDate,
+            //         CheckOut:dates[0].endDate,
+            //         NumAdults:options.adult,
+            //         NumChildren:options.children}
+
+            //     });
             })
          
        }
