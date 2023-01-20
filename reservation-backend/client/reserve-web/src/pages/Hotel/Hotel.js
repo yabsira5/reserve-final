@@ -4,6 +4,7 @@ import { Link, useLocation,useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
 
 import Navbar from "../../components/navbar/Navbar";
+import MapPage from "../../components/map/MapPage";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
@@ -138,7 +139,7 @@ console.log(ph)
             Excellent location – {data.distance} from center
           </span>
           <span className="hotelPriceHighlight">
-            Book a stay over ETB{data.price} at this property and get a {data.featured}
+            Book a stay over ETB {data.price} at this property and get a {data.featured}
           </span>
           <div className="hotelImages">
             {img.map((photo, i) => (
@@ -207,12 +208,11 @@ console.log(ph)
             // }) ()}
 
               ))}
-          
-         </div>   
-        </div>
+          <div className="maps">
+            <MapPage />
+          </div>
 
-        <div className="maps">
-          {/* Map */}
+         </div>   
         </div>
        
       </div>

@@ -1,7 +1,6 @@
 import React from "react";
 import "./searchItem.css";
-import { Link}from "react-router-dom";
-import Hotel from "../../pages/Hotel/Hotel";
+import { Link }from "react-router-dom";
 
 // import Hotel from "../../pages/Hotel/Hotel";
 
@@ -27,11 +26,13 @@ const SearchItem = ({hotel}) => {
         {hotel.title}
         </span>
         <span className="siFeatures">
+          {hotel.disc}
+        </span>
+        <span className="siFeatures">
         {hotel.featured}
         </span>
       </div>
       <div className="siDetails">
-        {hotel.disc}
         <div className="siRating">
           <button>{hotel.rating}</button>
         </div>

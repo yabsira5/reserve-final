@@ -149,6 +149,9 @@
     color: lightgray;
     cursor: pointer;
   }
+  .roomTypes{
+    display: flex;
+  }
 
   /* Card Code: */
   .projcard-container,

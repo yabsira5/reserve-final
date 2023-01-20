@@ -1,16 +1,12 @@
-map-container {
-    height: 400px;
-    }
-     
-.sidebar {
+.map-container {
+    height: 280px;
+    margin-top: 5px;
+    border-radius: 4px;
+}
+.sidebar{
     background-color: rgba(35, 55, 75, 0.9);
     color: #fff;
-    padding: 6px 12px;
-    font-family: monospace;
+    padding: 6px 13px;
     z-index: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    margin: 12px;
     border-radius: 4px;
 }

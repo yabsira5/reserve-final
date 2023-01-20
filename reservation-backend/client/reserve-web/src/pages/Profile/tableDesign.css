@@ -65,7 +65,7 @@
     width: 100%;
     height: 35px;
   }
-  input[type="checkbox"] {
+  .profileinput[type="checkbox"] {
     display: inline-block;
     width: auto;
     margin-top: 2em;
@@ -83,7 +83,7 @@
     background-color: #22223B;
     color: #fefefe;
   }
-  button:hover {
+  .profilebutton:hover {
     background-color: #4A4E69;
     color: #fefefe;
   }
