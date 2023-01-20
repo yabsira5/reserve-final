@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext,useEffect, useState } from "react";
 
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
@@ -9,6 +9,7 @@ import axios from "axios";
 import "./List.css";
 import Navbar from "../../components/navbar/Navbar";
 import SearchItem from "../../components/searchItem/SearchItem";
+import { SearchContext } from "../../context/SearchContext";
 
 
 const List = () => {
@@ -29,13 +30,14 @@ const List = () => {
       useEffect(() => {
         Searchhotel()
         setLoading(false);
-        if(type){
-          searchtype()
-          setLoading(false);
-        }
+       
       },[])
-console.log(type);
+
+      // const { dispatch } = useContext(SearchContext);
+
 function Searchhotel ()  {
+
+  
 
    console.log(destination);
    axios.get(`http://localhost/listhotel/hotel.php?city=${destination}&cheapestPrice=${min}&price=${max}`).then((res)=>{
@@ -43,15 +45,9 @@ function Searchhotel ()  {
       console.log({params})
       setdata(res.data);
    })
+  //  dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
   }
- function searchtype () {
-
-  axios.get(`http://localhost/typehotel/hotel.php?type=${type}&cheapestPrice=${min}&price=${max}`).then((res)=>{
-      console.log(res.data)
-      setdata(res.data);
-
- })}
-
+ 
   return (
     <div>
       <Navbar />
