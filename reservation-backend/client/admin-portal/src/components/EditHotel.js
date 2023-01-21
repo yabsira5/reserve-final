@@ -82,7 +82,7 @@ export default function EditHotel(){
         </label>
         <br/>
         <label className="managerlabel">Distance:
-          <input className="managerinput" value={Inputs.distance || ""} type="text" name="distance" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.distance || ""} type="text" name="distance" placeholder='Distance from address , long , lat' onChange={handleChange}/>
         </label>
         <label className="managerlabel">
           <h4>Change All  Photos of the Hotel</h4>

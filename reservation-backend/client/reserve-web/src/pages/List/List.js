@@ -45,7 +45,7 @@ function Searchhotel ()  {
       console.log({params})
       setdata(res.data);
    })
-  //  dispatch({ type: "NEW_SEARCH", payload: { destination, dates, options } });
+  //  dispatch({ type: "RESET_SEARCH", payload: { destination, dates, options } });
   }
  
   return (

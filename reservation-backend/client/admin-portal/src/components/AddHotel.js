@@ -104,7 +104,7 @@ const NewHotel = () => {
         </label>
         <br/>
         <label className="managerlabel">Distance:
-          <input className="managerinput" value={Inputs.distance || ""} type="text" name="distance" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.distance || ""} type="text" name="distance" placeholder='Distance from address , long , lat' onChange={handleChange}/>
         </label>
         <label className="managerlabel">
           <h4>Select a Photo of the Hotel</h4>

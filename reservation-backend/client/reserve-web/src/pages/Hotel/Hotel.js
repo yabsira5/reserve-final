@@ -21,8 +21,9 @@ const Hotel = () => {
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
-  const [type, setType] = useState([]);
-  const [check, setCheck] = useState('');
+  const [date, setdates] = useState([]);
+  const [option, setoptions] = useState({});
+  const [type,setType] = useState([]);
   // const [openModal, setOpenModal] = useState(false);
 
 
@@ -30,6 +31,8 @@ const Hotel = () => {
    const location = useLocation();
    const HotelCode = location.pathname.split("/")[2];
    console.log(HotelCode);
+     // Context (Use Context)
+  const { dates, options } = useContext(SearchContext);
 
    useEffect(() =>{
 
@@ -38,17 +41,16 @@ const Hotel = () => {
       setData($response.data)
     })
 
-    //get RoomID to check avalibilty
-    axios.get(`http://localhost/check/booking/${HotelCode}`).then((response)=>{
-      setCheck(response.data);
-      console.log(response.data);
-      console.log(check)
-  });
+ 
     
     //gets Room Details
     axios.get(`http://localhost/Roomtype/room/${HotelCode}`).then(function($response){
       setType($response.data)
     })
+
+  
+  setdates(dates);
+  setoptions(options);
 
    
 
@@ -56,24 +58,31 @@ const Hotel = () => {
 
    const RoomNo = type.RoomNo;
 
-  // Context (Use Context)
-  const { dates, options } = useContext(SearchContext);
+  
 
   const navigate = useNavigate();
 
    // get actual date function
    const MILISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
    function dayDifference(date1, date2) {
-     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+     const timeDiff = Math.abs(date2?.getTime() - date1?.getTime());
      const diffDays = Math.ceil(timeDiff / MILISECONDS_PER_DAY);
      return diffDays;
    }
  
    // get days using actual date define function
-   const days = dayDifference(dates[0].endDate, dates[0].startDate);
+   const days = dayDifference(date[0]?.endDate, date[0]?.startDate);
 
 
   console.log(data.photo)
+
+  const dis = data.distance?.split(',') || [];
+
+  const long = dis[1];
+   const lati = dis[2];
+   console.log(long);
+   console.log(lati);
+ 
 
   const img = data.photo?.split(',') || [];
  console.log(img);
@@ -136,7 +145,7 @@ console.log(ph)
             <span>{data.address}</span>
           </div>
           <span className="hotelDistance">
-            Excellent location – {data.distance} from center
+            Excellent location – {dis[0]} from {data.address}
           </span>
           <span className="hotelPriceHighlight">
             Book a stay over ETB {data.price} at this property and get a {data.featured}
@@ -167,11 +176,14 @@ console.log(ph)
                 excellent location score of {data.rating}!
               </span>
               <h2>
-                <b>ETB{days * data.cheapestPrice * options.room}</b> ({days}{" "}
+                <b>ETB{days * data.cheapestPrice * option.room}</b> ({days}{" "}
                 nights)
               </h2>
               <button >Reserve or Book Now!</button>
             </div>
+          </div>
+          <div className="maps">
+            <MapPage long={long} lati={lati}/>
           </div>
         </div>
 
@@ -208,11 +220,10 @@ console.log(ph)
             // }) ()}
 
               ))}
-          <div className="maps">
-            <MapPage />
-          </div>
+              </div>
+          
 
-         </div>   
+            
         </div>
        
       </div>
