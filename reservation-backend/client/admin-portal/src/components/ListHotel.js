@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import NavBar from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
 // import images from `http://localhost/fileupload/hotel/images/hotel/images`;
+import  {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import '../pages/list/list.css'
 
@@ -28,6 +30,17 @@ const deleteHotel = (id) =>{
  axios.delete(`http://localhost/hotel/hotel/${id}/delete`).then(function(response){
   console.log(response.data);
      getHotels();
+     toast.error(' (っ °Д °;)っ (┬┬﹏┬┬) Hotel Deleted!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+
  });
 }
 
@@ -108,6 +121,7 @@ const handleMove = (direction) => {
                     <td>
                       <Link to={`hotel/${hotel.HotelCode}/edit`}>Edit</Link>
                       <button onClick={() => deleteHotel(hotel.HotelCode)}>Delete</button>
+                      <ToastContainer />
                     </td>
                     
               </tr>

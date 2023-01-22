@@ -4,6 +4,8 @@ import { useNavigate,useParams,useLocation } from 'react-router-dom';
 import { useContext, useState,useEffect } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
+import  {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Reserve = () => {
     const location = useLocation();
@@ -17,6 +19,9 @@ const Reserve = () => {
     useEffect (() => {
     
         UserID = JSON.parse(localStorage.getItem('auth'));
+        if(UserID===null){
+            navigate('/login')
+        }
         console.log(UserID);
  
         
@@ -39,7 +44,7 @@ const Reserve = () => {
             console.log(selectedRooms)
             
             
-           
+        
         
     }, 
     []);
@@ -64,6 +69,16 @@ const Reserve = () => {
         if(true) {
             axios.post(`http://localhost/Booking/booking/save`,sendData ).then(function($response){
                 console.log($response.data)
+                toast.success('SMS will be sent shortly', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    });
                 // {profiles.Phone,dates[0].startData,dates[0].endDate}
             //     navigate("/sms",
             //     {
@@ -118,6 +133,7 @@ const Reserve = () => {
                 <button className="proceedBtn btn container" onClick={handleClick}> 
                     Confirm by SMS     
                 </button>
+                <ToastContainer/>
                 <button className="cancelBtn btn container">  
                     Cancel Booking        
                 </button>

@@ -33,7 +33,7 @@ const Hotel = () => {
    console.log(HotelCode);
      // Context (Use Context)
   const { dates, options } = useContext(SearchContext);
-
+  
    useEffect(() =>{
 
     //gets Hotel Details
@@ -47,6 +47,7 @@ const Hotel = () => {
     axios.get(`http://localhost/Roomtype/room/${HotelCode}`).then(function($response){
       setType($response.data)
     })
+
 
   
   setdates(dates);

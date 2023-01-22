@@ -3,6 +3,9 @@ import { useEffect, useState} from "react";
 import { Link } from 'react-router-dom';
 import NavBar from "../../components/navbar/Navbar";
 import Sidebar from "../../components/sidebar/Sidebar";
+import  {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 import '../../pages/list/list.css'
 import '../../components/tableDesign.css'
@@ -26,6 +29,16 @@ const deleteEmp = (EmployeeID) => {
   axios.delete(`http://localhost/Emp/employee/${EmployeeID}/delete`).then(function(response){
     console.log(response.data);
     getEmp();
+    toast.error(' (っ °Д °;)っ (┬┬﹏┬┬) Manger Deleted!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
   })
 }  
     
@@ -71,6 +84,7 @@ const deleteEmp = (EmployeeID) => {
                <td>
                  <Link to={`emp/${emp.EmployeeID}/edit`} style={{marginRight: "10px"}}>Edit</Link>
                 <button className="btn btn-denger" onClick={() => deleteEmp(emp.EmployeeID)}>Delete</button>
+                 <ToastContainer />
                </td>
                        
            </tr>

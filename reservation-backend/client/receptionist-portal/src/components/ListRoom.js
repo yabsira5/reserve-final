@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 import NavBar from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
-
+import  {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import '../pages/list/list.css'
 
 export default function ListRooms(){
@@ -34,6 +35,16 @@ const deleteRoom = (RoomNo) => {
   axios.delete(`http://localhost/Room/room/${RoomNo}/delete`).then(function(response){
     console.log(response.data);
     getRooms();
+    toast.error(' (っ °Д °;)っ (┬┬﹏┬┬) Room Deleted!', {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
   })
 }  
 
@@ -88,6 +99,7 @@ const deleteRoom = (RoomNo) => {
                  </td>
                  <td>
                 <button className="roombutton" onClick={() => deleteRoom(room.RoomNo)}>Delete</button>
+                <ToastContainer />
                </td>
                        
            </tr>

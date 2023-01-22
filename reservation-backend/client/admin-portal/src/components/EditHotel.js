@@ -2,6 +2,8 @@ import { useState,useEffect } from "react"
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import './tableDesign.css'
+import  {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function EditHotel(){
   
@@ -50,12 +52,16 @@ export default function EditHotel(){
      axios.post( `http://localhost/fileupload/hotel/insert.php`,formData)
           .then((result)=>{
             console.log(result.data);
+            
           })
      axios.put(`http://localhost/Hotel/hotel/${HotelCode}/edit`,Inputs).then(function ($response){
       console.log($response.data);
+      toast("Updated!");
       navigate("/hotels");
      
      });
+
+    
      
     }
     return(
@@ -123,7 +129,9 @@ export default function EditHotel(){
         </label>
         <br/>
         <button className="managerbutton" type="submit" name="submit">update</button>
+        <ToastContainer />
       </form>
+     
       </div>
       </div> 
   )

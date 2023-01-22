@@ -76,6 +76,7 @@ const Header = ({ type }) => {
                   placeholder="Where are you going?"
                   className="headerSearchInput"
                   onChange={(e) => setDestination(e.target.value)}
+                 
                 />
               </div>
               <div className="headerSearchItem">

@@ -13,6 +13,8 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import  {ToastContainer,toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
   
   const theme = createTheme();
 
@@ -43,7 +45,16 @@ const Login = () => {
       window.localStorage.setItem('auth', result.data);
     navigate('/');}
     else{
-      alert('Invalid User');
+      toast.warn('Wrong Email or Password!', {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        });
       console.log(result.data)
     }
   })
@@ -113,6 +124,7 @@ const Login = () => {
             >
               Sign In
             </Button>
+            <ToastContainer />
             <Grid container>
               <Grid item>
                 <Link href="./SignUp" variant="body2">
