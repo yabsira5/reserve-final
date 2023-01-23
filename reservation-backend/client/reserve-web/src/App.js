@@ -34,6 +34,7 @@ function App() {
           <Route path="/profile">
             <Route index element={<Profile/>}/>
           <Route path="profile/:UserID/edit" element={<EditProfile />} />
+          <Route path="User/RUser/user/:UserID" element={<Reserve/>}/>
           </Route>
         </Routes>
       </BrowserRouter> 

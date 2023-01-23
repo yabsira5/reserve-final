@@ -6,7 +6,6 @@ import Sidebar from "./sidebar/Sidebar";
 import  {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
 import '../pages/list/list.css'
 import './tableDesign.css';
 
@@ -55,7 +54,7 @@ const deleteUser = (UserID) => {
       </div>
 
         <div className="tableRoom">
-        <table>
+        <table className="styled-table">
             <thead>
             <tr>
               <th>User_ID</th>

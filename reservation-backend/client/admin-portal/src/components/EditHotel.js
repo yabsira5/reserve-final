@@ -105,7 +105,7 @@ export default function EditHotel(){
         </label>
         <br/>
         <label className="managerlabel">descrp:
-          <input className="managerinput" value={Inputs.disc || ""} type="text" name="disc" onChange={handleChange}/>
+          <textarea className="managerarea" value={Inputs.disc || ""} type="text" name="disc" onChange={handleChange}/>
         </label>
         <br/>
         <label className="managerlabel">rating:

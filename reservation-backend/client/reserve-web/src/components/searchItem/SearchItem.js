@@ -25,7 +25,7 @@ const SearchItem = ({hotel}) => {
         <span className="siSubtitle">
         {hotel.title}
         </span>
-        <span className="siFeatures">
+        <span className="sidisc">
           {hotel.disc}
         </span>
         <span className="siFeatures">

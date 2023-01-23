@@ -139,7 +139,6 @@ console.log(ph)
           </div>
         )}
         <div className="hotelWrapper">
-            <button className="bookNow" >Reserve or Book Now!</button>
           <h1 className="hotelTitle">{data.name}</h1>
           <div className="hotelAddress">
             <PlaceIcon />
@@ -180,7 +179,6 @@ console.log(ph)
                 <b>ETB{days * data.cheapestPrice * option.room}</b> ({days}{" "}
                 nights)
               </h2>
-              <button >Reserve or Book Now!</button>
             </div>
           </div>
           <div className="maps">
@@ -190,6 +188,10 @@ console.log(ph)
 
         {/* Room Categories*/}
 
+        <br/>
+        <br/>
+        <br/>
+        <br/>
         <h2>Room Types</h2> 
             <div className="roomTypes">
              
@@ -207,12 +209,10 @@ console.log(ph)
                     <div className="projcard-description">
                      {room.disc}
                     </div>
-                    <div className="hotelDetailsPrice">
                       <Link to = {`/reserve/${room.RoomNo}`}>
-                      <button >Reserve
+                      <button className="bookNow">Reserve Your Room
                       </button>
                       </Link>
-                    </div>
                   </div>
                 </div>
               </div>

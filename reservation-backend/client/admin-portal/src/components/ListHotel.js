@@ -7,7 +7,7 @@ import Sidebar from "./sidebar/Sidebar";
 import  {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import '../pages/list/list.css'
+import '../components/tableDesign.css'
 
 export default function ListHotel(){
  
@@ -79,7 +79,7 @@ const handleMove = (direction) => {
       </div>
 
       <div className="tableRoom">
-      <table> 
+      <table className="styled-table"> 
            <thead>
                  <tr>
                   <th>hotelCode</th>

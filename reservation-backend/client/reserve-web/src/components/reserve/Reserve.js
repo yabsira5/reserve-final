@@ -6,31 +6,26 @@ import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import  {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Navbar from '../../components/navbar/Navbar'
 const Reserve = () => {
     const location = useLocation();
    const RoomNo = location.pathname.split("/")[2];
    
-    let {UserID} = useParams();
+     let {UserID} = useParams();
     const [profiles, setProfile] = useState([]);
     const [selectedRooms, setSelectedRooms] = useState([]);
     const navigate = useNavigate();
 
     useEffect (() => {
     
-        UserID = JSON.parse(localStorage.getItem('auth'));
+         UserID = JSON.parse(localStorage.getItem('auth'));
         if(UserID===null){
             navigate('/login')
         }
         console.log(UserID);
- 
+        setProfile(UserID)
         
-            axios.get(`http://localhost/User/RUser/user/${UserID}`)
-            .then(function ($response){
-              setProfile($response.data);
-              console.log($response.data)
-            })
-            console.log(profiles)
+        //    getuser();
 
 
            
@@ -51,12 +46,21 @@ const Reserve = () => {
     const {dates, options} = useContext(SearchContext);
   
       console.log(dates);
+    //   function getuser(){
+    //     axios.get(`http://localhost/User/RUser/user/${UserID}/user`)
+    //     .then(function ($response){
+    //       setProfile($response.data);
+    //       console.log($response.data)
+    //     })
+    //     console.log(profiles)
+    //   }
+    
     
    
     
     const sendData = {
         HotelCode:selectedRooms.HotelCode,
-        UserID:profiles.UserID,
+        UserID:profiles,
         RoomNo:selectedRooms.RoomNo,
         CheckIn:dates[0].startDate,
         CheckOut:dates[0].endDate,
@@ -95,8 +99,11 @@ const Reserve = () => {
             })
          
        }
+       navigate('/')
      };
   return (
+    <>
+    <Navbar/>
     <div className='reserve'>
         <div className="roomContainer">
             <img src="https://www.roadaffair.com/wp-content/uploads/2019/10/meyazia-27-square-addis-ababa-ethiopia-shutterstock_187152050.jpg"
@@ -118,7 +125,7 @@ const Reserve = () => {
                              <h3 className="roomTitle">Room Price</h3>
                             <p className="roomPrice">ETB {selectedRooms.price}</p>
                         </div>
-                        <div className="roomInfo">
+                        {/* <div className="roomInfo">
                              <h3 className="roomTitle">Booked By</h3>
                             <p className="roomPrice">{profiles.Username}</p>
                         </div>
@@ -126,7 +133,7 @@ const Reserve = () => {
                              <h3 className="roomTitle">Phone Number</h3>
                             <p className="roomPrice">{profiles.Phone}</p>
                             
-                        </div>
+                        </div> */}
                 </div> 
             </div>
             
@@ -140,6 +147,7 @@ const Reserve = () => {
              
         </div>
     </div>
+    </>
   )
 }
 

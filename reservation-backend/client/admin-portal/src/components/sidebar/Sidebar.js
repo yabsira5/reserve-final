@@ -5,9 +5,17 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import StoreIcon from "@mui/icons-material/Store";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from '@mui/material';
+
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+  const Logout =()=> {
+    localStorage.removeItem("auth");
+    localStorage.clear();
+    navigate('/login');
+  }
   return (
     <div className="sidebar">
 
@@ -54,12 +62,13 @@ const Sidebar = () => {
           </li>
           </Link>
 
-          <Link to="/logout" style={{ textDecoration: "none" }}>
+         <Button onClick={Logout} style={{ textDecoration: "none" }}>
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span style={{ marginBottom: 12}}>Logout</span>
           </li>
-          </Link>
+          </Button>
+          
 
         </ul>
       </div>
