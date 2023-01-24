@@ -7,6 +7,7 @@ import Sidebar from "./sidebar/Sidebar";
 import  {ToastContainer,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../pages/list/list.css'
+import { border, color, display } from "@mui/system";
 
 export default function ListRooms(){
 
@@ -92,7 +93,13 @@ const deleteRoom = (RoomNo) => {
                <td>{room.maxpeople}</td>
                <td>{room.disc}</td>
                <td>{room.roomNumbers}</td>
-               <td>{room.Booked_Status}</td>
+               <td>
+                <select value={room.Booked_Status}
+                 style={{appearance: "none",border: "none",outline: "none"}}> 
+               <option value="0" hidden>Not Booked</option>
+               <option value="1"hidden>Booked</option>
+               </select>
+               </td>
                
                <td>
                  <Link to={`room/${room.RoomNo}/edit`} style={{marginRight: "10px"}}>Edit</Link>

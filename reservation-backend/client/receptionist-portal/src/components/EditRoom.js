@@ -91,7 +91,10 @@ export default function EditRoom(){
         </label>
         <br/>
         <label className="roomlabel">Booked Status:
-          <input className="roominput" value={Inputs.Booked_Status} type="number" name="Booked_Status" onChange={handleChange}/>
+          <select className="roominput" value={Inputs.Booked_Status} type="number" name="Booked_Status" onChange={handleChange}>
+            <option value="1">Booked</option>
+            <option value="0">Not Booked</option>
+          </select>
            
         </label>
         <br/>

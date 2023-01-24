@@ -58,15 +58,15 @@ function deleteBooked(BookingID){
             <tr>
               <th>Booking ID</th>
               <th>Room ID</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>roomNumbers</th>
-              <th>BookingDate</th>
+              <th>Customer Name</th>
+              <th>Customer Email</th>
+              <th>Customer Phone</th>
+              <th>Room Number</th>
+              <th>Booking Date</th>
               <th>CheckIn</th>
               <th>CheckOut</th>
-              <th>NumAdults</th>
-              <th>NumChildern</th>
+              <th>Number of Adults</th>
+              <th>Number of Childern</th>
               <th>Is it still Booked </th>
               <th>Cancel</th>
             </tr>
@@ -86,7 +86,13 @@ function deleteBooked(BookingID){
                <td>{room.CheckOut}</td>
                <td>{room.NumAdults}</td>
                <td>{room.NumChildren}</td>
-               <td>{room.Booked_Status}</td>
+               <td>
+                <select value={room.Booked_Status} style={{appearance: "none",border: "none",outline: "none"}}> 
+               <option value="0" hidden>Not Booked</option>
+               <option value="1"hidden>Booked</option>
+              
+               </select>
+               </td>
                <td>
                 <button className="roombutton" onClick={() => deleteBooked(room.BookingID)}>Cancel</button>
                </td>
