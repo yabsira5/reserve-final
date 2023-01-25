@@ -17,7 +17,7 @@ switch($method) {
         inner join user on booking.UserID=user.UserID";
         $path = explode('/', $_SERVER['REQUEST_URI']);
         if(isset($path[3]) && is_numeric($path[3])) {
-            $sql .= " WHERE booking.HotelCode = :HotelCode";
+            $sql .= " WHERE booking.HotelCode = :HotelCode ORDER BY room.Booked_Status ASC";
             $stmt = $conn->prepare($sql);
             $stmt->bindParam(':HotelCode', $path[3]);
             $stmt->execute();
