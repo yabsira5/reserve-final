@@ -46,6 +46,18 @@ export default function EditHotel(){
 
      const formData = new FormData();
      formData.append('HotelCode',HotelCode)
+     formData.append("name", Inputs.name);
+     formData.append("type", Inputs.type);
+     formData.append("city", Inputs.city);
+     formData.append("address", Inputs.address);
+     formData.append("distance", Inputs.distance);
+     formData.append("title", Inputs.title);
+     formData.append("disc", Inputs.disc);
+     formData.append("rating", Inputs.rating);
+     formData.append("rooms",Inputs.rooms);
+     formData.append("price", Inputs.price);
+     formData.append("cheapestPrice", Inputs.cheapestPrice);
+     formData.append("featured", Inputs.featured);
      for (let i = 0; i < selectedFile.length; i++){
       formData.append('file[]', selectedFile[i])
      }
@@ -94,7 +106,7 @@ export default function EditHotel(){
           <h4>Change All  Photos of the Hotel</h4>
           
           <div>
-          <input className="managerinput" type="file"  name="file[]" multiple onChange={handleChangefile}/>
+          <input className="managerinput"   type="file"  name="file[]" multiple onChange={handleChangefile}/>
         
           </div>
           

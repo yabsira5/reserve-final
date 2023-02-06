@@ -94,7 +94,8 @@ const handleMove = (direction) => {
                   <th>rooms</th>
                   <th>cheapestPrice</th>
                   <th>featured</th>
-                  <th>Actions</th>
+                  <th>Update Info</th>
+                  <th>Delete Hotel</th>
                  </tr>
             </thead>   
             <tbody>
@@ -120,9 +121,12 @@ const handleMove = (direction) => {
                     <td>{hotel.featured}</td>
                     <td>
                       <Link to={`hotel/${hotel.HotelCode}/edit`}>Edit</Link>
+                      </td>
+                      <td>
                       <button onClick={() => deleteHotel(hotel.HotelCode)}>Delete</button>
                       <ToastContainer />
-                    </td>
+                      </td>
+                    
                     
               </tr>
               )}

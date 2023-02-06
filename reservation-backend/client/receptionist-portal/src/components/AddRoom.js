@@ -73,8 +73,8 @@ export default function AddRoom(){
           <input className="roominput" value={Inputs.maxpeople} type="number" name="maxpeople" onChange={handleChange}/>
         </label>
         <br/>
-        <label className="roomlabel">discription:
-          <input className="roominput" value={Inputs.disc} type="text" name="disc" onChange={handleChange}/>
+        <label className="roomlabel">description:
+          <textarea className="roominput" value={Inputs.disc} type="text" name="disc" onChange={handleChange}/>
         </label>
         <br/>
         <label className="roomlabel">roomNumber:

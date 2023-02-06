@@ -8,6 +8,7 @@ export default function EditGuest(){
   const navigate = useNavigate();
   
   const [Inputs, setInputs] = useState({});
+  const[get,setGet] = useState();
   
   const {UserID} = useParams();
 
@@ -16,7 +17,7 @@ export default function EditGuest(){
   },[]);
   
   function getUser(){
-    axios.get(`http://localhost/User/user/${UserID}`).then(function ($response){
+    axios.get(`http://localhost/User/get/user/${UserID}` ).then(function ($response){
       console.log($response.data);
       console.log(UserID);
       setInputs($response.data);  
@@ -34,7 +35,7 @@ export default function EditGuest(){
   const handelSubmit = (event) => {
    event.preventDefault();
     
-   axios.put(`http://localhost/User/user/${UserID}/edit`,Inputs).then(function ($response){
+   axios.put(`http://localhost/User/get/user/${UserID}/edit`,Inputs).then(function ($response){
     console.log($response.data);
     navigate("/users");
    
@@ -48,27 +49,27 @@ export default function EditGuest(){
       <h1>Edit Guest</h1>
       
         <label className="managerlabel">UserName:
-          <input className="managerinput" value={Inputs.Username} type="text" name="Username" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.Username || ''} type="text" name="Username" onChange={handleChange}/>
         </label>
         <br/>
         <label className="managerlabel">Email:
-          <input className="managerinput" value={Inputs.Email} type="text" name="Email" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.Email  || ''} type="text" name="Email" onChange={handleChange}/>
         </label>
         <br/>
         <label className="managerlabel">Country:
-          <input className="managerinput" value={Inputs.Country} type="text" name="Country" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.Country  || ''} type="text" name="Country" onChange={handleChange}/>
         </label>
         <br/>
         <label className="managerlabel">City:
-          <input className="managerinput" value={Inputs.City} type="text" name="City" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.City  || ''} type="text" name="City" onChange={handleChange}/>
         </label>
         <br/>
         <label className="managerlabel">Phone:
-          <input className="managerinput" value={Inputs.Phone} type="text" name="Phone" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.Phone  || ''} type="text" name="Phone" onChange={handleChange}/>
         </label>
         <br/>
         <label className="managerlabel">Password:
-          <input className="managerinput" value={Inputs.Password} type="text" name="Password" onChange={handleChange}/>
+          <input className="managerinput" value={Inputs.Password  || ''} type="text" name="Password" onChange={handleChange}/>
         </label>
         <br/>
       
