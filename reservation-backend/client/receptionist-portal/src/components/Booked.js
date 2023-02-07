@@ -47,22 +47,6 @@ function deleteBooked(BookingID){
   });
 }
 
-// const sendInfo = (Username,Email) => {
-//   setTo_Name(Username);
-//   setfrom_Name(Email)
-//   console.log(to_name + from_name);
-
-//   const emailContent = {
-//     to_name: to_name,
-//     from_name: from_name,
-//   };
-
-//   emailjs.send('service_33phd3r','',emailContent,).then((res) => {
-//     console.log(res.text);
-//   },(error)=>{
-//     console.log(error.text);
-//   });
-// }
      const sendSMS = (Phone) => {
       setphone(Phone);
       console.log(Phone);
@@ -72,8 +56,9 @@ console.log(phone);
      
     const cli =  client.messages
       .create({
+        messagingServiceSid: 'MG8e49c1e9673ab9f2f49f732bf15f9ec0',
         body:'Thanks for Booking with us if you want to cancel your booking you can contact the hotel which there phone number is on there discription',
-        from:'+13855263468',
+        // from:'+13855263468',
         to:phone});
       // .then(message =>{ console.log(message , "Message sent") })
       // .catch(err => {console.log(err , "Message not sent")})
@@ -154,14 +139,5 @@ console.log(phone);
         </div>
     </>
   )
-
-  // axios.get()
-    // .then(($response) => {
-    //   console.log($response)
-    //   setUsers($response.data)
-    // })
-    // .catch(($err) => {
-    //   console.log($err)
-    // });
-  
+ 
 }

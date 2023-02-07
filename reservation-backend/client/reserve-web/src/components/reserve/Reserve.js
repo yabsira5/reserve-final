@@ -25,7 +25,6 @@ const Reserve = () => {
         console.log(UserID);
         setProfile(UserID)
         
-        //    getuser();
 
 
            
@@ -38,25 +37,14 @@ const Reserve = () => {
             console.log(RoomNo)
             console.log(selectedRooms)
             
-            
-        
+               
         
     }, 
     []);
     const {dates, options} = useContext(SearchContext);
   
       console.log(dates);
-    //   function getuser(){
-    //     axios.get(`http://localhost/User/RUser/user/${UserID}/user`)
-    //     .then(function ($response){
-    //       setProfile($response.data);
-    //       console.log($response.data)
-    //     })
-    //     console.log(profiles)
-    //   }
-    
-    
-   
+
     
     const sendData = {
         HotelCode:selectedRooms.HotelCode,
@@ -73,34 +61,14 @@ const Reserve = () => {
         if(true) {
             axios.post(`http://localhost/Booking/booking/save`,sendData ).then(function($response){
                 console.log($response.data)
-                toast.success('SMS will be sent shortly', {
-                    position: "top-right",
-                    autoClose: 5000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "colored",
-                    });
-                // {profiles.Phone,dates[0].startData,dates[0].endDate}
-            //     navigate("/sms",
-            //     {
-            //  state: {
-            //         Hotel:selectedRooms.name,
-            //         Username:profiles.Username,
-            //         Phone:profiles.Phone,
-            //         CheckIn:dates[0].startDate,
-            //         CheckOut:dates[0].endDate,
-            //         NumAdults:options.adult,
-            //         NumChildren:options.children}
-
-            //     });
             })
-         
+            alert('Room Booked')
        }
        navigate('/')
      };
+     const backtohome = () => {
+        navigate('/')
+     }
   return (
     <>
     <Navbar/>
@@ -125,23 +93,14 @@ const Reserve = () => {
                              <h3 className="roomTitle">Room Price</h3>
                             <p className="roomPrice">ETB {selectedRooms.price}</p>
                         </div>
-                        {/* <div className="roomInfo">
-                             <h3 className="roomTitle">Booked By</h3>
-                            <p className="roomPrice">{profiles.Username}</p>
-                        </div>
-                        <div className="roomInfo">
-                             <h3 className="roomTitle">Phone Number</h3>
-                            <p className="roomPrice">{profiles.Phone}</p>
-                            
-                        </div> */}
                 </div> 
             </div>
             
                 <button className="proceedBtn btn container" onClick={handleClick}> 
-                    Confirm by SMS     
+                    Book Now     
                 </button>
                 <ToastContainer/>
-                <button className="cancelBtn btn container">  
+                <button className="cancelBtn btn container" onClick={backtohome}>  
                     Cancel Booking        
                 </button>
              

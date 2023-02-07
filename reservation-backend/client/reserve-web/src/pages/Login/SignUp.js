@@ -49,6 +49,7 @@ axios.post('http://localhost/User/user/save',sendData)
 
 .then((result)=>{
   if(result.status === 200) {
+    alert('signup successful')
     navigate('/login');
   }
   else {

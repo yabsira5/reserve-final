@@ -13,7 +13,7 @@ const SectionCard = () => {
     const[Haw, setHaw] = useState('');
     const Hawassa ='Hawassa';
     const[Gon, setGon] = useState('');
-    const Gondar ='Gondar';
+    const Gondar ='Gonder';
     const[Dire, setDire] = useState('');
     const diredawa ='Dire Dawa';
 
@@ -64,7 +64,7 @@ const SectionCard = () => {
                 </div>
                 <div className="cityBox">
                     <img src="https://images.unsplash.com/photo-1608634193723-1865aa4416ce?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80" alt="gondar"/>
-                    <span className="cityName">Gondar</span>
+                    <span className="cityName">Gonder</span>
                     <p className="cityHotels">{Gon.city} Hotels</p>
                 </div>
                 <div className="cityBox">

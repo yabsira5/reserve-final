@@ -25,8 +25,7 @@ $price = $_GET['price'];
         if(isset($price) && isset($cheapestPrice) && is_numeric($price)){
             // ordering them by there price range , rating and distance
             $sql .= " AND (price BETWEEN '".$cheapestPrice."' AND '".$price."') 
-            ORDER BY cheapestPrice = '".$cheapestPrice."' DESC,
-             rating DESC, distance ASC LIMIT 0, 10  ";
+            ORDER BY cheapestPrice DESC";
             $stmt = $conn->prepare($sql);
             $stmt->execute();
             $hotels = $stmt->fetchAll(PDO::FETCH_ASSOC);

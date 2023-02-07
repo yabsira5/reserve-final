@@ -8,6 +8,7 @@ const SearchItem = ({hotel}) => {
   console.log(hotel)
 
   const img = hotel.photo?.split(',') || [];
+   const dis = hotel.distance?.split(',') || [];
 
   return (
     <div className="searchItem">
@@ -20,7 +21,7 @@ const SearchItem = ({hotel}) => {
       
       <div className="siDesc">
         <h1 className="siTitle" >{hotel.name}</h1> 
-        <span className="siDistance">{hotel.distance}</span>
+        <span className="siDistance">{dis[0]} From {hotel.address}</span>
         <span className="siTaxiOp">{hotel.city}</span>
         <span className="siSubtitle">
         {hotel.title}
@@ -38,7 +39,7 @@ const SearchItem = ({hotel}) => {
         </div>
         <div className="siDetailTexts">
           <span className="siPrice">ETB {hotel.price}</span>
-          <span className="siTaxOp">ETB {hotel.cheapestPrice}</span>
+          <span className="siTaxOp">Cheapest Aviliable ETB {hotel.cheapestPrice}</span>
 
           <Link to= {`/hotels/${hotel.HotelCode}`}>                
             <button className="siCheckButton">See availability</button>

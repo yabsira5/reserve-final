@@ -42,6 +42,7 @@ const Login = () => {
     .then((result)=>{
       if(result.status === 200){
         window.localStorage.setItem('auth', result.data);
+        alert('login successful')
       navigate('/');}
       else{
         toast.warn('Wrong Email or Password!', {
