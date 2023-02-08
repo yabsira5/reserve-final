@@ -18,7 +18,7 @@
     "react-dom": "^18.2.0",
     "react-error-overlay": "^6.0.9",
     "react-router-dom": "^6.4.3",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.1",
     "twilio": "^3.84.1",
     "util": "^0.12.5",
@@ -61,5 +61,8 @@
     "path": false,
     "https": false,
     "querystring": false
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
   }
 }

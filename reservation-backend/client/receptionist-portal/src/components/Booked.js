@@ -4,29 +4,20 @@ import React, { useEffect, useState} from "react";
 import { useParams } from "react-router-dom";
 import NavBar from "./navbar/Navbar";
 import Sidebar from "./sidebar/Sidebar";
-// import emailjs from "emailjs-com";
-import twilio from "twilio";
-// import * as dotenv from "dotenv";
-
-import '../pages/list/list.css'
-
-// import { stripBasename } from "@remix-run/router";
+import '../pages/list/list.css';
+import  {ToastContainer,toast} from 'react-toastify';
 
 export default function ListBooked(){
-
 
   let {hotel} = useParams();
   
   const [item, setItems] = useState([]);
-  const[phone, setphone] = useState('');
-  // const [to_name,setTo_Name] = useState("");
-  // const [from_name,setfrom_Name] = useState("");
   useEffect (() => { 
     hotel = JSON.parse(localStorage.getItem('authemp'));
     if(hotel){
-        // setItems(hotel);
         console.log(hotel)
     };
+   
     getBooked();
 }, 
 []);
@@ -43,28 +34,41 @@ function deleteBooked(BookingID){
   
   axios.delete(`http://localhost/Booking/booking/${BookingID}`).then(function ($response){
     console.log($response.data);
-    getBooked();  
+    getBooked();
+   
   });
 }
 
-     const sendSMS = (Phone) => {
-      setphone(Phone);
-      console.log(Phone);
-      console.log(phone);
-      const client = new twilio('AC95142347bfbeb71e3d381481b14fa5a2' , '08ee3cb4f0fcd49320c806a34a27ac3b');
-console.log(phone);
+     const sendSMS = async(Phone) => {
+      
      
-    const cli =  client.messages
-      .create({
-        messagingServiceSid: 'MG8e49c1e9673ab9f2f49f732bf15f9ec0',
-        body:'Thanks for Booking with us if you want to cancel your booking you can contact the hotel which there phone number is on there discription',
-        // from:'+13855263468',
-        to:phone});
-      // .then(message =>{ console.log(message , "Message sent") })
-      // .catch(err => {console.log(err , "Message not sent")})
-      console.log(phone);
+      const params = new URLSearchParams();
+params.append('Body','Thanks for Booking with us if you want to cancel your booking you can contact the hotel which there phone number is on there discription');
+params.append('To',Phone);
+params.append('From','+13855263468');
 
-      axios.post('/api/messages',cli)
+
+     await (axios.post('https://api.twilio.com/2010-04-01/Accounts/AC95142347bfbeb71e3d381481b14fa5a2/Messages.json',params,  { headers:{'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',},
+        auth: {
+          username: 'AC95142347bfbeb71e3d381481b14fa5a2',
+          password: '24bf07e909e212b70d8f4fd6d420dfed'
+        }
+      })).then((res) => {
+        console.log(res.data)
+        toast.success('✉️ SMS Sent!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          });
+      }).catch((error) =>{
+        console.log(error);
+      });
+
      }
 
 
@@ -117,6 +121,7 @@ console.log(phone);
                <td>{room.NumChildren}</td>
                <td>
                 <button className="roombutton" onClick={() => sendSMS(room.Phone)}>Send SMS</button>
+                <ToastContainer/>
                </td>
                <td>
                 <select value={room.Booked_Status} style={{appearance: "none",border: "none",outline: "none"}}> 
